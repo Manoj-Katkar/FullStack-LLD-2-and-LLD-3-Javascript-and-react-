@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<!-- Please NOTE that the link to assets (like images) need to be set in global context.
+For example:
+To access an image from assets folder correct way to set src attribute is 
+
+src = 'profile.png'
+
+instead of 
+
+src = './assets/profile.png'
+-->
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul>
+
+</body>
+
+<script>
+    // Write your JS program here ====
+    //     Write a program in JavaScript to do the below-mentioned task:
+
+    // Fix the list of elements by adding the missing element using 
+    // DOM methods like querySelectorAll and insertBefore.
+
+    // Note:Add the missing number to the list without changing the HTML part of the code.
+
+    // step 1 
+    // first target the ul 
+    const unorderedList = document.querySelector('ul');
+
+    // then I have to target the all the list items 
+    const listItems = document.querySelectorAll('li');
+
+    console.log(listItems);
+
+    // create the new li 
+    const liNew = document.createElement('li');
+
+    // add the inner text 
+    liNew.innerText = 7;
+
+    // now get the position that I have to add new li after the fifth index 
+    const positionBefore = listItems[6];
+
+    // add after the above position in the ul 
+
+    unorderedList.insertBefore(liNew , positionBefore);
+
+
+
+
+</script>
+
+</html>
