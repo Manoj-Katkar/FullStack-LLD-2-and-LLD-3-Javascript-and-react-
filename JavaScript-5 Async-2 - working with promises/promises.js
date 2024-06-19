@@ -1,1 +1,0 @@
-let coinTossPromise = new Promise() 

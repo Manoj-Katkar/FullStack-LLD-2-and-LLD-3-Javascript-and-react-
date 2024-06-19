@@ -5,13 +5,13 @@
 
 const task1 = () =>{
     console.log("I am task 1");
-}
+} 
 
 const task2 = () =>{
     console.log("I am task 2");
 }
 
-// ! heavy task 
+// ! heavy task in Synchronus way
 
 let C = 1 ;
 
@@ -44,3 +44,13 @@ task1();
 // heavyTask();
 AsyncHeavyTask();
 task2();
+
+// !Module or library : prebuild code that we are going to use 
+
+/**
+ * * if we want to use the inbuild modules of the javascript then there are two ways are there 
+ *! 1)using import  
+ *! 2)using require 
+
+ *readFile will get executed in task queue and call back will get into the call back queue and it will get executed in call stack itself 
+ */
