@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi dolores,
+          rerum repudiandae enim consectetur consequatur quae recusandae,
+          perferendis at quod illum, deleniti similique a eius nulla architecto
+          earum. Iure, deleniti.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi dolores,
+          rerum repudiandae enim consectetur consequatur quae recusandae,
+          perferendis at quod illum, deleniti similique a eius nulla architecto
+          earum. Iure, deleniti.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi dolores,
+          rerum repudiandae enim consectetur consequatur quae recusandae,
+          perferendis at quod illum, deleniti similique a eius nulla architecto
+          earum. Iure, deleniti.
+        </p>
+        <script>
+          // WRITE THE JS PROGRAM HERE ====================================================================
+
+        //   first step target the html element that is p 
+
+        
+            const targettedElementList = document.querySelectorAll('p');
+
+            console.log(targettedElementList);
+
+            let count = 0 ;
+
+            // iterate over the nodeList 
+            targettedElementList.forEach((element , index , originalList) => {
+                element.addEventListener("dblclick" , (event) => {
+                    element.style.backgroundColor= "green";
+
+                    if(index < targettedElementList.length){
+                        count = count + 2;
+                    }
+                    
+                })
+                
+                // console.log(element);
+            })
+            
+
+            // iterate over the nodeList and add the event for the single click
+            targettedElementList.forEach((element , index , originalList) => {
+                element.addEventListener("click" , (event) => {
+                    element.style.backgroundColor= "red";
+                    
+                })
+                // console.log(element);
+            })
+
+
+            // // iterate over the nodeList and add the event for the triple click
+            // targettedElementList.forEach((element , index , originalList) => {
+            //     element.addEventListener("dblclick" , (event) => {
+                    
+                    
+            //         element.addEventListener("click" , (event) => {
+            //             element.style.backgroundColor= "none";
+            //         })
+            //     })
+            //     // console.log(element);
+            // })
+             
+        </script>
+</body>
+</html>

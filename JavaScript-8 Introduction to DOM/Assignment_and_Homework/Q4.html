@@ -50,6 +50,24 @@
      console.log(parentDiv);
 
      parentDiv.addEventListener("click" , event => {
+          const clickedElement = event.target;
+
+          console.log(clickedElement);
+
+          //or using the className also I can do it 
+          // const classNameOfElement = clickedElement.className;
+
+          // console.log(classNameOfElement);
+
+          // lets do it with the by getting the innerText of that triggred html element 
+
+          const innerTextOfElement = clickedElement.innerText;
+
+          console.log(innerTextOfElement);
+
+          // now add the css to its parent that is backgroundColor
+          parentDiv.style.backgroundColor = `${innerTextOfElement}`;
+
 
      });
   </script>
