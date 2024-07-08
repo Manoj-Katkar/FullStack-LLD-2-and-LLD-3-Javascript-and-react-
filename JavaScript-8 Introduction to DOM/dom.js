@@ -112,13 +112,33 @@
 
 // !to get the classList of the targetted html element 
 
-//* let allClassForHtmlElement = element.classList()
+//* let allClassForHtmlElement = element.classList;
 
 
 
 // !now to add the extracted attribute to the targeted html element as the class Name 
 
 // *element.classList.add(className-which-extracted-fromAttribute);
+
+// !to remove the any class from the classList of that element 
+
+//*  singleDiv.classList.remove("class Name that to remove");
+
+
+
+// !to check in the particular classList of the element contains some class Name 
+// ^return type is boolean true if it contains or false if it does not contains 
+// *event.target.classList.contains("reply");    
+
+
+
+
+
+// !to check the two or more level up that element is having particular classsName or not use most to search the accurate parent 
+// ^it will always go up in the hierarchy 
+
+//* const closestCard = event.target.closest(".classNameOfElement-WeAre-searching-of any parent");
+
 
 
 // !to get the which element is triggred in the DOM for that event with its parent 
@@ -142,3 +162,107 @@
 
 event.preventDefault();
 
+
+// !to remove the any child individually 
+
+// div2.removeChild(anchorTag);
+
+
+//! to entirelly remove the div2 
+
+// div2.remove();
+
+// !Libraries
+// if we are comming accross the problem while doing the project that what to do for certain design of the code logic so look out for the third party libraries 
+// ^so npm  (Node Pacakage Manager) is one out of them
+
+// !but there are static libraries are also there like cdn =(Content Delivery Network.)  where some static assest is hosted that can be the image , vedio or text or some javascript files or css also
+
+// ^so to create the unique id I will use cdn that is below
+{/* <script src="https://unpkg.com/shortid-dist@1.0.5/dist/shortid-2.2.13.min.js"></script> */}
+
+
+// ! to access the child of the any element 
+
+// ^parentElementName.children[pass the index starting from 0]
+
+// !to get the any child parent 
+
+// ^childElementName.parentElement;
+
+
+
+// !Local Storage (5mb data for the each host we can save) (it is persistent data). and (every url will have the differant local storage)
+// !Session Storage : it will get clear automatically when the that tab will get closed it is temporaray basis 
+// all mesthoda are same only 
+
+
+localStorage.setItem(key , value);  //*key and value should be on the string format     
+
+localStorage.getItem(key)
+
+localStorage.removeItem(key)
+
+localStorage.clear() ;  //*removes the all the pairs at once 
+
+
+
+
+
+
+// !Event Delegation and Event Propagation All Notes 
+
+
+
+
+// !now if I want to see in which phase the event is got triggred each event then use = event.eventPhase
+
+// ^event.eventPhase it will represent by the numbers as 1 , 2 , 3 
+
+/**
+ * *1 = capturing phase 
+ * *2 = Target phase 
+ * *3 = bubbling phase 
+ */
+
+
+//^ to get original target = event.target (means the element where I have to go that is going to be the fixed )
+// ^to get the current target  = event.currentTarget;
+
+
+
+
+
+// !event.target.dataset = 
+//* it will create the map of the custom attributes we have for the targetted html element in DomMap format 
+
+
+
+
+
+
+
+
+// !JavaScript-15: Event Delegation and Machine Coding-2
+
+// 
+/**
+ * !Event Delegation : 
+ * *                the case where the event happen on the one html element but they will not handle themself instead they will delegate means pass on that event to another html element and that element will handle that particular event this concept is known as the event delegation
+ * 
+ * ^usecase : it is use to make your code efficient 
+ * !event delegation is the implementation of the event bubbling 
+ * 
+ * 
+ * !point to remember while implementing the event delegation : 
+ * *                                        Apply the addEventListner to the element in bubling phase who is leas common Ancestor for the both the elements that we are optimizing to add the event Listner 
+
+*/
+
+// const fs = require('fs')
+/**
+ * *here the fs is the library of the node js and it has the functions to deal with files on a system
+ * *it have the functions to deal with files means read the file , delete he file . to update a file 
+ * *so first we have to import the files of that library 
+ * *hence in require("fs") you have to write fs but for variable name you can take any name for that 
+ */

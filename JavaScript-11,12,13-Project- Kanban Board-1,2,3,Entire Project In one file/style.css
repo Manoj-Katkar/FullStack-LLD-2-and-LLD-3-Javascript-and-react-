@@ -1,0 +1,228 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    font-family: "Roboto", sans-serif;
+    background-color: #778899;
+}
+
+nav{
+    background-color:#4b4b4b ;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+   padding: 1rem;
+}
+
+
+
+#nav-div1{
+    width: 18%;
+    height: 5rem;
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    border-radius: 20px;
+    border: none;
+}
+
+
+#nav-div2{
+    width: 55%;
+    height: 5rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #303030;
+    border-radius: 20px;
+    border: none;
+}
+
+#nav-div2 > button{
+    color: white;
+    /* background-color: black; */
+    height: 3rem;
+    width: 11rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    /* *to slowlly zoom in and zoom out when the mouse is hover  */
+    transition: transform 0.5s;
+}
+
+#nav-div2 > button:active{
+    border: 2.5px solid yellow;
+}
+
+#nav-div2 > button:hover{
+    transform: scale(1.1);   /* *Zoom in */
+}
+
+/* changing the background colors of the buttons  */
+.lightpink{
+    background-color: #ff6347;
+}
+
+.lightgreen{
+    background-color: #1e90ff;
+}
+
+.lightblue{
+    background-color: #008000;
+}
+
+.black{
+    background-color: #000000;
+}
+
+
+#nav-div3{
+    width: 13%;
+    height: 5rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #303030;
+    box-sizing: border-box;
+    border-radius: 20px;
+    border: none;
+}
+#nav-div3 > button{
+    background-color: #303030;
+    border: none;
+}
+
+#nav-div3 > button:hover{
+    background-color: green;
+}
+
+.fa-plus{
+    font-size: 2.7rem;
+    color: white;
+}
+
+.fa-trash{
+    font-size: 2.7rem;
+    color: white;
+}
+
+
+/* *Accessing the main container  */
+
+#main-container{
+    display: flex;
+    justify-content: space-around;
+    /* align-items: center; */
+    margin-top: 2.5rem;
+
+    /* here tickets should not overlap on each other hence used flex wrap it will come one after other when the window size is got reduced  */
+
+    flex-wrap: wrap;   
+}
+
+
+#ticket-container{
+    height: 12rem;
+    width: 15rem;
+    
+    background-color: coral;
+}
+
+.ticket-color{
+    height: 1rem;
+}
+
+.ticket-id{
+    height: 2rem;
+    background-color: yellow;
+}
+
+
+
+
+
+/*  main container while taking the data from the user as the task */
+
+.main-task-area-create{
+    height: 50vh;
+    width: 50vw;
+    background-color: lightsalmon;
+    position: absolute;
+    top: 30%;
+    left: 25%;
+    display: flex;
+
+    /* justify-content: space-between; */
+    /* align-items: center; */
+}
+
+#text-Area-Cont{
+    background-color: #e1e5eb;
+    border: none;
+    /* to remove the default highlight  */
+    outline: none;
+    /* to not change the size  */
+    resize: none;
+    padding: 1rem;
+    box-sizing: border-box;
+    font-size: 2rem;
+    font-weight: 700;
+    height:100%;
+    width: 75%;
+
+}
+
+#text-Area-Cont::placeholder{
+    color: rgba(0, 0, 0, 0.772);
+}
+
+.colors{
+    height: 3rem;
+    width: 5rem;
+    /* margin: 2rem; */
+    /* *to get the pointer o n the mose hover on those element  */
+    cursor: pointer;
+
+}
+
+#priority-colors-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 25%;
+}
+
+/* noe creating the one more class to select the status of the task while creating itself 
+for that i am giving the border  */
+.color-border{
+    border: 2px solid blue;
+}
+
+.task-area{
+    background-color: white;
+    padding: 1.5rem;
+
+
+}
+
+.ticket-id{
+    text-align: center;
+    padding: 0.6rem;
+}
+
+
+.fa-lock{
+    color: black;
+    font-size: 2rem;
+    margin: 0.5rem;
+}
+
+.ticket-lock{
+    background-color: white;
+    width: 10rem;
+    text-align: end;
+}
+
