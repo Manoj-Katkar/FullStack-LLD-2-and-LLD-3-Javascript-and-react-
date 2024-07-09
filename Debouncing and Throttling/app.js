@@ -130,11 +130,6 @@ const getItemsRecommensdationsThrottling = () => {
 
 
 
-
-
-
-
-
 const autocompleteNormal = getItemsRecommensdationsNormal;
 
 const autocompleteDebounce = debounce(getItemsRecommensdationsDebouncing , 3000);   //*debounce will execute the passed function after the 3 seconds delay 
