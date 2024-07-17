@@ -1,0 +1,1 @@
+// ^All Notes of the Javascript theory 
