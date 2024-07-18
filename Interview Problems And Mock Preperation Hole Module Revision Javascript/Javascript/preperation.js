@@ -72,7 +72,7 @@ function abc(){
 
 // console.log(favNum);//not defined 
 
-abc();
+// abc();
 
 
 
@@ -93,8 +93,27 @@ function outer(){
     return inner;
 }
 
-let innerFunction = outer();
+// let innerFunction = outer();
 
 //now I have to invoke the inner function 
-innerFunction();
+// innerFunction();
+
+
+
+
+// ! How to convert the String to Array
+
+
+let str3 = "this week mock along with css";
+
+// *Using split method we can convert the String to Array 
+// *Generally we pass the argument as the space 
+
+console.log(str3.split(""));    // * from the argument that we will passs from that it will be sepearated now here each character will get converted into the array element 
+
+
+let arrayMock = str3.split(" ");  // it converted into the Array and we stored it 
+
+console.log(arrayMock);
+
 
