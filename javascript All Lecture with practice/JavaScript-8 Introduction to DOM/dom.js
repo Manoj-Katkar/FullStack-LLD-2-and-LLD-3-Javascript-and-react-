@@ -255,7 +255,13 @@ localStorage.clear() ;  //*removes the all the pairs at once
  * 
  * 
  * !point to remember while implementing the event delegation : 
- * *                                        Apply the addEventListner to the element in bubling phase who is leas common Ancestor for the both the elements that we are optimizing to add the event Listner 
+ * *                                        Apply the addEventListner to the element in bubling phase who is least common Ancestor for the both the elements that we are optimizing to add the event Listner 
+ * 
+ * 
+ * 
+//^ to get original target = event.target (means the element where I have to go that is going to be the fixed )
+
+// ^ to get the current target  = event.currentTarget;
 
 */
 
