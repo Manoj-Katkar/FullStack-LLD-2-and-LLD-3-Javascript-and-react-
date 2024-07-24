@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello world using HTMl and JS</title>
+</head>
+
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+<body>
+
+    <div id="root">
+
+    </div>
+
+    
+</body>
+
+<script>
+    // Approach 
+    //target the html element 
+    let div1 = document.querySelector("#root");
+
+    // create the h1
+    let heading1 = document.createElement('h1');
+
+    //insert the new Text inside it 
+    heading1.innerText = "Hello From JS";
+
+    //now append it to the div 1 
+
+    div1.appendChild(heading1);
+
+</script>
+
+</html>

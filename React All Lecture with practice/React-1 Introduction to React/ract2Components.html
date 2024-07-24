@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Componenets Using Functions In React</title>
+</head>
+
+ <!-- connecting the react code in the cdn format  -->
+ <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+ <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+ <!-- CDN for Babel Library -->
+ <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+<body>
+
+    <div id="root">
+
+    </div>
+    
+</body>
+
+<script type="text/babel">    //*change the type as = text/babel (That I have to tell which javascript code it should parse JSX code to react elements)
+
+    // selecting the root Element
+    let rootElement = document.querySelector("#root");
+
+    // !Creating the functional Componenets 
+    // !Note : We use Pascal case to write the Naming convention of the Functinal Componenents (Means first letter capital)
+
+    //below we have added the html code inside the javascript code that is known as the JSX (Javascript XML)
+
+    function App(){
+
+        return <h1>Hello From React Using Functional Components</h1>;   //this line is JSX Code 
+    }
+
+    //App -> is a Functional Components -> which returns the JSX
+    // <h1>Hello From React Using Functional Componenets</h1> -> this is JSX -> Html merged with JS 
+    
+    //!Now rendering the functional components in the root element 
+    ReactDOM.render(<App />, rootElement);  //App custom tag will contain the virtual DOM
+
+
+    // *! How Javascript will identify the it is JSX : 
+                                    
+    // * ^if any function is returning the html code then javascript will able to get to know that it is JSX 
+    //* ^ and That JSX will return the virtual DOM Where All the react elements are going to be there in it 
+
+
+    //learned about CDN , creating elements in React , rendering elements in React , JSX (Javascript XML) , Babel to parse JSX elements to React elements , functional Componenets 
+
+
+</script>
+
+</html>

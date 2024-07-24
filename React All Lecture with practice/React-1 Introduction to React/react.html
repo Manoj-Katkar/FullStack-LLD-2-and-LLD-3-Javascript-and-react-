@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello world In React</title>
+
+    
+</head>
+
+    <!-- connecting the react code in the cdn format  -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+<body>
+
+    <div id="root">
+
+    </div>
+    
+</body>
+
+<script>
+    // !writing React code in js
+    // Approach 
+    //* target the element 
+    let rootElement = document.querySelector("#root");
+
+    //* Create the element using the React 
+
+
+
+    // let headingElement = React.createElement('h1' , props (Means Properties) , content That I want In this element  )
+
+    let headingElement = React.createElement('h1' , {
+        style : {
+            color : "red"                                 //giving the style prop in the form of the object 
+        }
+    } , "Hello From React");
+
+    console.log(headingElement);
+
+    // let para = React.createElement('p' , null , "Hello From React");
+
+
+    //!Now I have to append this heading element into the rootElement using ReactDOM.render() we can do this
+
+    ReactDOM.render(headingElement , rootElement);
+    // ReactDOM.render(para, rootElement);    ///second one will take the precedence 
+
+
+    // ReactDOM.render(headingElement , para ,rootElement);   //*this will throw error because we are attaching to child of virtual dom to actual dom we cannot do that we have to make the one common parent for both then only we can attach the that common parent of the virtual DOm to the Actual DOM 
+
+
+</script>
+
+</html>
