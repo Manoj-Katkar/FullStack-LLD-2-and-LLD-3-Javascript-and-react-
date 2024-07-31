@@ -1,7 +1,7 @@
 //*Note Very Imp :   In React we can create the All the Html Dynamically but one key point that there is should always one root element should be present in the Html body for React also 
 
 // React create its virtual DOM and it get attached with the root element of the html body it can div , (first element that wan present inside the body of the Html)
-//file modified
+
 
 // !Where we can write the React Code 
 // 1) In Javascript file
@@ -154,3 +154,152 @@
  * !CDN for Babel Libraray : 
  * *<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
  */
+
+
+
+
+
+
+// Agile methodology 
+
+// All this is done under the sprint planning 
+
+// Product backlog is the priotirezed list of stories that must be develop inside the product 
+// Product owner will maintain it .(product owner will set the acceptance criteria)
+// Scrus master : he will drive the entire team he is a big supporter for entire project 
+// product owner : is acting like a customer but he is not a customer
+
+//Spring planning = 2 hours per week 
+// Meeting time = if it is one week sprint then planning should happen in two hours 
+// i sprint is 4 weeks then planning should happen in 4 hours 
+
+// job of scrum master : to help everyone 
+
+// In core team of the scrum total people count should be 7 + or - 2
+
+// !Job of the Product owner 
+// maintain the Product Backlog 
+// manage the priprity 
+// help them to understand the stories 
+// set acceptance criteria 
+
+
+
+
+
+
+
+// !=========================================== Day 2 ======================================
+
+/**
+ * ^ Agenda : 
+    **  Build tools for React, 
+    ** How to Create the Componenets 
+    ** Props and State
+    ** Conditional Rendering 
+    ** Event Handling in React
+    
+ */
+
+
+/**
+ * !What is Boiler Plate Code :
+ *                         1)Some default code on top of which I can Write my own Code 
+ *                         2)own code I can write over here boiler plate code that is default structure on which I am wrting my code is known as boiler plate code
+ * 
+ * 
+ * 
+ * !What browser Understand :
+ * *                       it will understand the plane vanila javascript it will not understand any framework or libraray like React so I have to bundle the all the files into the one javascriot file at end 
+ * 
+ * 
+ * !So to solve the above browser issue to bind the all files into js one file Build tools for React, came into the picture 
+ * 
+ * 
+ * ^Build tools for React : 
+ *                      i)this tools provide the boiler platting for complex applications so developers life will get easy 
+ *                       ii)and this also help to bundle the all files code into the one bundled file code in js format so the browser can render that code in UI
+ * 
+ * 
+ * 
+ * ^ Some Common Build tools for React : 
+ * *              1)CRA (Create React App)   (it is heavily used)
+ * *             2)Vite (but it is faster than CRA) //!so use this for now larger application
+ *                         i)it is used to get the boiler plate code for the differant framework 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * !How Can we use Vite to create the React larger Application : 
+ * 
+ * ^Steps : 
+ * *       1)npm create vite@latest NameOF-Your-React-Project --template react   (you can get for other gramework also )
+ * 
+ *         2) we will get few options :  Vanilla
+                                          Vue
+                                          React    //!Select React
+                                          Preact
+                                          Lit
+                                          Svelte
+                                          Solid
+                                          Qwik
+                                          Others
+ * 
+ * 
+ *          3) then further we will get few options : TypeScript
+                                                      TypeScript + SWC
+                                                      JavaScript   //! (select javascript)
+                                                      JavaScript + SWC
+                                                      Remix ↗
+ * 
+            4) then boiler plate code for your react app is get created using Build tool Vite
+
+
+            5) then I have to install the all the dependencies in my project for that change the directory 
+                cd my-first-app
+            
+            6) then  use npm install (it will install the all the third party libraries that I need in the project by going into the package.json file )   (it will also install the nested dependency also )
+
+// !Now how to run the React Application :
+//^                           1)use (npm run dev)   // (it is command)
+// &                          2) it will bundeled all your code html and js and react which will be taken care by Vite automatically
+
+
+
+
+
+
+
+
+
+ * ^package.json : it is like Registry or folder 
+                 ** it will maintain the list of all the dependencies                                  
+
+         
+                 
+ * !npm : (NODE PACAKGE MANAGER) : it is used to manage and maintain the third party libraries 
+ * 
+ * 
+ */
+
+/**
+ * //* here (^ it is carrot sign which will restrict the to change the major version of the react but it will allow to change the minor version under same major version so handle the our app should work with the compatibility what we have created )
+ * 
+ * !  "react": "^18.3.1",    
+   *! "react-dom": "^18.3.1"
+ */
+
+
+   // !Why Not to upload the node_module folder to github 
+   // &                                      1)_because it takes to much space 
+   // &                                      ) so simply upload the package.json so the other developer will download the all the dependencies from npm by looking at the package.json file 
+
+
+
+
+
+
+
+
