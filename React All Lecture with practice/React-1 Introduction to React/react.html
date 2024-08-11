@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello world In React</title>
 
-    
-</head>
-
     <!-- connecting the react code in the cdn format  -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    
+</head>
+
 
 <body>
 
@@ -36,7 +37,7 @@
         style : {
             color : "red"                                 //giving the style prop in the form of the object 
         }
-    } , "Hello From React");
+    } , "Hello From React");     //!this is common functionality 
 
     console.log(headingElement);
 
@@ -45,7 +46,7 @@
 
     //!Now I have to append this heading element into the rootElement using ReactDOM.render() we can do this
 
-    ReactDOM.render(headingElement , rootElement);
+    ReactDOM.render(headingElement , rootElement);            //!this is web specific functionality hence used ReactDOM
     // ReactDOM.render(para, rootElement);    ///second one will take the precedence 
 
 

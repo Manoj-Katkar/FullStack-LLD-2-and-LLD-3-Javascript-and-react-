@@ -16,19 +16,19 @@
 /**
  * What is Content Delivery Network 
  *                          When we host some content on the server machine so that any other machines can also able to access that content it can be the some code also which is hosted on that server 
- *                          Content can be the static content image , vedio , CSs file , Js file 
+ *                          *Content can be the static content image , vedio , CSs file , Js file 
  */
 
 //^Old CDN Links : https://legacy.reactjs.org/docs/cdn-links.html
 //^New Latest documentation :  https://react.dev/blog/2023/03/16/introducing-react-dev    and https://react.dev/learn
 
 
-// !CDN to create the web Applications using react : (React and React Dom is required for web)
+// *CDN to create the web Applications using react : (React and React Dom is required  for web)
 {/* <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> */}
 
 
-// !And to create the app for Android and IOS using react  (React with react Native is required with its CDN)
+// *And to create the app for Android and IOS using react  (React with react Native is required with its CDN)
 
 // 
 /**
@@ -52,6 +52,8 @@
 
 //* let headingElement = React.createElement('h1' , props (Means Properties or attributes that you want to set for this created Element ) , content That I want In this element  // or we can pass the child element also   )
 
+// !While creating the elements first is the mandatory but the second and the third argument is optional while creating the element using the React 
+
 
 
 //! rendering the html elements in using react (means appending in React)
@@ -62,9 +64,12 @@
 // * ReactDOM.render(new element that want to render , element on which you want to render new element);   // order is important 
 
 
+// !What is the virtual DOM : Means All the code that React has To offer (to attach the react virtual Dom that it is offering to the actual dom we use render)
+
 
 
 // !How to pass the props for the html element that we have created using the React 
+// ^props is nothing but an one object only 
 
 /**
  * * let headingElement = React.createElement('h1' , {
@@ -93,14 +98,14 @@
  *                  and then I have to make sure that those all compnonents talk to each other so I can end up creating the interactive application
  * 
  * 
- * Types of Componenets : (At the End Every Componenet will return SSome html Back)
+ * *Types of Componenets : (At the End Every Componenet will return Some html Back)
  * 
  *                      1)Class Based Componenets :
  *                                          this is deprcated means it is not now supported by meta 
  * 
  *                      2) Functional Components  : (We will Focus on this only )
  *                                          Means Some function which returns some Html Back 
- **                                         if a Function is returning a JSX that function is called 
+ **                                          if a Function is returning a JSX that function is called 
  **                                          as Functional Componenets
  * 
  * 
@@ -115,7 +120,7 @@
 
 
 
-//!What is JSX : (Javascript XML)
+//!What is JSX : (Javascript XML) (it will allow to write the html in React so it will automatically create the virtual DOM )
 
 /**
  *  !JSX  : 
@@ -149,7 +154,7 @@
 
 //!What is Babel : 
 /**
- * * 1)our JSX code will not work directlly it should get convert to the ReactDOM for that we have to use Babel Libraray
+ * * 1)our JSX code will not work directlly it should get convert to the ReactDOM for that we have to use Babel Libraray 
  * 
  * !CDN for Babel Libraray : 
  * *<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -224,7 +229,7 @@
  * 
  * ^ Some Common Build tools for React : 
  * *              1)CRA (Create React App)   (it is heavily used)
- * *             2)Vite (but it is faster than CRA) //!so use this for now larger application
+ * *             2)Vite (but it is faster than CRA) //!so use this for now larger application (bundling process is faster in Vite Than CRA hence use Vite)
  *                         i)it is used to get the boiler plate code for the differant framework 
  * 
  * 
@@ -257,10 +262,20 @@
             4) then boiler plate code for your react app is get created using Build tool Vite
 
 
+            **the I have to run the 3 commands one by one I have written in points also refer the points also 
+            *! commands to run the react app is : 
+                                *^  cd my-first-React-App  (changing the directory)
+                                *^  npm install            (installing the all the dependencies)
+                                *^  npm run dev             (then runing the react Application on browser)
+
+
             5) then I have to install the all the dependencies in my project for that change the directory 
                 cd my-first-app
             
             6) then  use npm install (it will install the all the third party libraries that I need in the project by going into the package.json file )   (it will also install the nested dependency also )
+
+
+            //^ npm run dev (dev means vite that will run the react App on My localHost)
 
 // !Now how to run the React Application :
 //^                           1)use (npm run dev)   // (it is command)
@@ -272,10 +287,10 @@
 
 
 
-
+// !What is package.json : 
 
  * ^package.json : it is like Registry or folder 
-                 ** it will maintain the list of all the dependencies                                  
+                 ** it will maintain the list of all the dependencies    (means the all third party libraries)                              
 
          
                  
@@ -298,8 +313,61 @@
 
 
 
+  //  !Differant files that vite toll boilerPlate provides for React Application 
 
 
+  //  !main.jsx : 
+  //                ^(in this file the attachment of the virtual DOM will be done to the actual dom that is id with root division in index.html)
+
+
+
+  //! App.jsx : 
+  // ^          here we will write the all the functinal componenets that are in js XML format 
+
+
+  // !index.css : 
+  // ^          this is the default CSS that built tool is provides that is global CSS 
+
+  //! App.css : 
+  // ^          this is functional Componenets level CSS it will get apply to them only 
+
+
+
+
+
+// !What is fragement in html : 
+// ^       <> Hello </>     (this <> brackets are the fragements when we do not want to create the any html tag then simply we will use that )
+
+
+
+
+// ^ All About the Componenets 
+
+
+/**
+ * !Where to write the React code : 
+ * *                          We will write the React Code for our react application under the src folder     
+ * 
+ * !if we want to create the componenets then that also we will create it inside the src folder make the one folder name it as componenets and inside that create the jsx file and there you can write the your custom componenets 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * !shot-cut to create the componenet boiler plate code : 
+ * *                                              i)type in jsx componenet file as = rafce + enter 
+ * 
+ * * rafce (meaning) = react Arrow Function Export Component
+ * 
+ * 
+ * 
+ * ?Note : Every Component in React must have a Atleast one return  
+ */
+
+
+
+
+// ! How to add the props to the custom componenets (so it will become the dynamic in nature):
 
 
 
