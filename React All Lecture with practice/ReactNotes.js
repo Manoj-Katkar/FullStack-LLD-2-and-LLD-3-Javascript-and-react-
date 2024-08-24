@@ -371,3 +371,192 @@
 
 
 
+
+
+
+
+
+
+// !=========================================== Day 3 ======================================
+
+//^for in-detail information refer the Counter.jsx file from day 3 all src files 
+
+/**
+ * ^Agenda : 
+ * *     1)use State hook 
+ * *     2)use Effect hook
+ * *     3)forms in React
+ * *     4)Lifting of state in React
+ * 
+ * 
+ * 
+ * 
+ * !Types of variables Any Functional Component Can Have : 
+ * *                          i)props : that is someone else is sending varables by their value in my functional component as an argument
+ * 
+ * *                          ii)State : The variables that I have created within the function itself (Where the Scope of that variable is within the functional componenet itself ) and they store some state means as an value which is local to that functional component
+ * 
+ * 
+ * 
+ * 
+ * ! What is State in React : 
+ *                      The variables which is defined inside the function componenets which holds certain value that belongs to componenets itself (Means the variable which is local to mu functional component)
+ *                      i)local to to the functional componenet
+ *                      ii)defined and declared inside the functional component
+ * 
+ * 
+ * !Props : 
+ *          i)comming from outside 
+ *           ii)defined outside 
+ *           iii)passed from other componenet to your component 
+ *  
+ * 
+ * !What is data Members : 
+ *              the variables and the methods that is declared inside the class is all Data Members only 
+ * 
+ * !How to have the some states in the class based component : 
+ * *                                        i)I have to create the data memebers for that class those will be treated as the states in the class based component 
+ *        
+ * 
+//  ! Why we use Hook and What is Hook :
+*  ^        1)to handle  the state in functional component React gave you the hook     
+* ^         2) it is inbuilt method if we want to maintain the state in the functional component 
+ * 
+ * 
+ * 
+ * ^hooks using I can implement the state in the functional component are below : 
+ * 
+ * ! 1) useState hook : 
+ **               1)it is inbuilt method 
+ **               2)used to handle  the state in functional component React gave you the useState hook 
+ **               3) useStae returs Array and that Array has two things = [actualVariable state, functionTo Mutaed that state];
+ *~                             i)actual State 
+ *~                             i)function to mutate that state 
+ * 
+ * 
+ * !Note : all the hooks starts with use that is the convention that we follow 
+ * 
+ * 
+ * 
+ * ^Syntax of useState(): 
+ * *            [actualVariable state with default value given by useState , functionTo Mutaed that state]=  useState(default value of state);
+ * 
+ * 
+ * 
+ * ^whenever we will use the useState() the the value of that variable will be retained after the refresh also means it will not get loosed (data loss will be not there)
+
+ * 
+
+
+every time we cnahe the jsx of the component then that jsx will get auto rendered again in the UI
+
+
+
+ *!Differance between the State and Props : 
+ *
+ *^ i)State : 
+ **      1)Every Time we change our state then jsx of that functional component will automatically get re-rendered again in UI  
+ **      2)state is mutable using the function which useState() gives 
+ **      3)when a state change then that component will get re-rendered in the UI
+ **      4)
+ * 
+ * 
+ * 
+ * 
+ * 
+ * ^ii)Props : 
+ **        1)props are immutable (after receving we cannot change the value of the props)
+ **        2)if a differant value of the props is passed from the parent component then your that functional component not get re-rendered
+
+ *
+ * 
+ * !Differance between the refreshing and re-rendering 
+ * 
+ * ^ 1) refreshing : 
+ * *            here complete page will get refreshed
+ * 
+ * 
+ * ^ 2)re-rendering : 
+ * *         i) jsx that we are passing from the functional component that is getting refreshed and rendered in the UI without actual refreshing the page 
+ * 
+ * *          ii) re-rendering only happens when your state get updated not when a props get updated 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * !How optimization In react works 
+ *                  *it bunch the N no of the State changes and it re-renders only one or probably 2 or 3 state changes In the UI 
+ * <>
+ * 
+ * 
+ * 
+ * 
+ * !What is Lifting the State Up Concept : 
+ *                    
+ * ^first before understanding the lifting the state up lets understand why we do that what problem get occured that we so;ve using the lifting that state up 
+ * 
+ * !Problem we get : 
+ *        when the two states are using the useState on the same variable then following problems do happen 
+ *        i) I want the same state in the two componenets where initially we are keeping the diferant state amoung the two componenets 
+ *          ^actual problems 
+ *        ii) there is no way to transfer the state from the one component o other 
+ *        iii) I am maintaining the two differant state that is making my code redundant writing the same lines of code again and again 
+ *        iv) it can lead to inconsistency 
+ *        v) so to solve the above problem we have to keep that state in the single common least nearest Ancestor inteligintelly so where it can be centrallly accesed by the both the component 
+ *        
+ *        *vi)so we will kepp that state in the App.jsx file that is only known as the lifting of the state 
+ * 
+ * 
+ * 
+ * !Lifting the State Up Defination : 
+ *                        if two sibling component required a common state so we do not define that state in those siblings instead we will lift up that state and place it in the common Ancestor in our case it will be App.jsxv this is known as Lifting the State Up
+ * 
+ * 
+ *^ Note :  do refer the code from the same day to understand it in better way 
+ * 
+ * 
+ * !useEffect Hook : 
+ * 
+ * ^ Each component have the lifetime in below phases: 
+ * *                         i)mounting
+ * *                         ii)updating
+ * *                         iii)un-mounting
+ * 
+ * ! When we had the class based component  we used to have this functions 
+ *                    componentDidMount = () => {
+ *                            //*it was getting executed when the class based component are getting rendered into the UI
+ *                      }
+ * 
+ * ^Few Other methods also was there : 
+ *                    componentDidUpdate = () => {
+ *                            //*it was getting executed when the class based component are getting updated into the UI
+ *                      }  
+ * 
+ * 
+ *                    componentDidUnmount = () => {
+ *                            //*it was getting executed when the class based component are getting unMounted into the UI
+ *                      }  
+ * 
+ * !All the above was getting used for the class based component but now it is deprecated so there should be the way for the functional based component to so to handle the each phase of the lifetime of the component react gave the hook that is useEffect Hook
+ * 
+ * 
+ * !useEffect Hook :
+ * *              i)to handle the all the phases from the lifetime of the any component or state we use useEffect() hook 
+ * *              ii) it takes two argument 
+ *                          i)callback function 
+ *                          ii)dependancy array  
+ *              
+ * 
+ * !Now lets learn the multiple variations of the useEffect() hook  Total 3 Types are there :
+ * *                              1) useEffect((callback function), [with empty dependancy array]) :
+ *                                                      ^callback will get triggred on the 1st re-rendering
+ *                                  
+ * *                              2) useEffect((callback function), [with array having dependencies in it]) :
+ *                                                       ^callback will get triggred on the basis on dependencies
+ * 
+ * *                              3) useEffect((callback function),  not passing dependancy array) :
+ *                                                        ^callback will get triggred on every re-rendering 
+ * 
+ */
+
