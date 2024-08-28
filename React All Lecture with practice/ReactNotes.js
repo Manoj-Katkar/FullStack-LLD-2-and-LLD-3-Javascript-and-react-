@@ -560,3 +560,212 @@ every time we cnahe the jsx of the component then that jsx will get auto rendere
  * 
  */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// !=========================================== Day 4 ======================================
+
+/**
+ * ^ Agenda : 
+ * 
+    ** Client Side routing
+    ** React Router (to implement the client side routing we use React router)
+    ** Talwind css  (it is third party css library)
+    ** In depth Urls and routings 
+
+
+
+    
+*!Single Page Applications :
+*~                        1)reloading will not happen with each click
+*~                        2)In SPA performance is better comparatively
+*~                        3)we can create using React Angular Viu
+*~                        4)old requests are stored in browser cache 
+*~                         5)example : linkedIn 
+*~                         6) here only url gets changed means updated but loader will not get loaded 
+*~                         7) it will be more faster because it will not make the network calls for the each that particular module it will make the first network call to the frequentlly accessed modules according to the user 
+
+
+
+
+*!Muti Page Applications :
+*~                        1) Reload will happen
+*~                        2)we can create using JQuery
+*~                        3)old requests are not stored, if same request is repeated then it will once again sent to the server.
+*~                          4)problems in multipage application : because of the network calls each time and for redirecting to the differant web pages it taken time so here it increses the latency 
+
+*~                        5) example : Amazon, flipcart
+*~                         6) here both gets updated url gets changed means updated and also loader will get loaded because of the mutiple pages it is having 
+*~                         7) here the frequentlly accesed component get load fast in the single page applications
+
+
+
+
+/**
+ * * Client Side routing :
+ *                      which created the illusion that you are moving to the new page but actual not , actually the UI getting updated that is known as the client side routing 
+ * 
+ * 
+ * 
+ * !Note : if I will return the all the component in the single page applications then the total bundle size will be big so retriving that data from the backend will take more time hence we have to bundle only those components that can be frequentlly going to get accessed by the our users for that particular App 
+ * 
+ * 
+ * 
+ * 
+ * 
+ ** Benefits of Lazy Loading : (which are frequentlly used components only render that first later remaining based on the user request)
+   Improved Performance: Only the necessary code is loaded at the start, which speeds up the initial load time.
+   Reduced Bandwidth Usage: Less data is loaded initially, reducing the amount of bandwidth consumed.
+   Scalability: As the application grows, lazy loading helps manage the increasing size of the codebase effectively.
+
+
+ * ^When the disadvantage Lazy Loading will become of the approach accessing the all data related to the components which are getting accessed by user frequentlly 
+ * !                    1) the disadvantage Lazy Loading will become when we will not acces the frequentlly used components because then I have to make the network calls to the component that is getting used by user again and again for each that will increse the time and user will not get the good experiance over there 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * ^Approach to Install the any of the library : 
+ *      go to chrome -> search library -> open the library -> see how many weekly downloads are there for that library -> then also watch last published means it is currentlly and updated with the time  -> then it is good use that library in your react project 
+ * 
+ * *         1) dependencies : means on which library that current library is depend on 
+ * *         2) dependants :  menas how many other libraries are depend on the my current library
+ * 
+ * 
+ * 
+ * 
+ * !library in react for router = react-router-dom
+ *                               to install the above library use npm i react-router-dom
+ * 
+ * 
+ * !Routes : inside the Routes only we have to write the Route components 
+ * !Route : it expects the following two things 
+ *             1)path='' (means urls where to go like '/home')
+ *             2) element = {means which component I have to render for that path like <Home/>} 
+ *             3) means when the user goes to home path then render the Home component in the web app
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * !Now lets Understand How to Read the URL's : 
+ *                                     !(now all the urls are case - incensitive means uppercase and lowercase will be treated as the lowercase only )
+ * 
+ * ^Example : www.linkedIn.com/profile?userId=007    (how to read it)
+ * 
+ * *           1st part) www.linkedIn.com   (it is the base url which will be always present in any application)
+ * *           2nd part) /profile        (it is path param)
+ * *           3rd part) ?userId=007    (this is query param)
+ * 
+ * 
+ * 
+ * ! Now if the path param is not there then I have to show the 404 that the page you are looking for that is not present how to do that ? 
+ * *           1)for this not fi=ound special case I have to pass the in the path of the route = '*' and in element display the component about the notFund with suitable message 
+ * 
+ * 
+ * 
+ * !Note : 
+ * *     1)in the all the route it will get matched one by one so at the last we will keep the route for the not found path param
+ * 
+ * *      2) and path param are not case sensitive it will get converted into the lowercase BUT IF YOU WILL HAVE THE TWO ROUTES FOR THE same component but as the path uppercase and then lowercase then whichever the first route will be there that get rendered in the UI with its component 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * !Link Tag (Comes with the React Router Dom Library): 
+ * *                     1)when in the single page application we want to redirect to some other component then we have to use the Link tag that comes within the react-router-dom library
+ *  *                     2) inside the <Link to={'/path where to redirect}></Link> there is the to attribute I have to use to re-direct to the any component using the route so only the new UI get rendered and the path  para in the domain name will get changed
+ * 
+ * 
+ * !Differance between the Link tag and anchor tag in html :
+ * 
+ * ^1)<Link></Link> : 
+ * *                1)it is present inside the react-router-dom
+ * *                2)our application should not get load hence we have to use Link tag so that will follow the principle of the single page application
+ * *                3)and it is the component that is there inside the react-router-dom library
+ * *                4) link Component matches with the route component and then it rendred the match component in the UI
+ * 
+ * 
+ * 
+ * ^2)anchor tag(<a></a>) :
+ * *                  1)when we use the anchor tag the page will get reload 
+ * *                  2)it is mostlly used in server side routing  
+ * 
+ * 
+ * 
+ * 
+ * !We have seen the below type of the urls also like : (Known as the dynamic url's or we can call it as template routes)
+ * ^ ------------www.scaler.com.users/123     (means give the details of the user having the id as the 123)
+ * ^  -------------So How we can extract that id data from the above url -----------------
+ * 
+ * !Using the useParams() hook we can able to extract that id details from the urls path params
+ * 
+ * !useParams() hook :  (implementation is there in Users.jsx)
+ * *                1) with the help of the useParams() hook we can able to extract the id or any custom data from the url's itself 
+ * *                2)it will return the params in the form of the object haviong the key as that ou have given in the psth params to route
+ * *                 3) it is present inside the react router dom 
+ * 
+ *                    ^Example :  <Route path='/users/:id' element={<Users/>}></Route>
+ *                    then : 
+ * &                                    let paramsObject = useParams();
+  *&                                      console.log(paramsObject.id); //*here i will get the id that user have manually entered in urls path params 
+
+ * 
+
+/**
+ * !How to redirect using the routes : 
+ * *                      1) we can achieve redirect to some other component using the Navigate component from the react-router-dom
+ * 
+ * ^Example : (how to use it)
+ *^---------------<Route path='/abc' element={<Navigate to={'/settings'}></Navigate>}></Route>-----------
+ * 
+ *        *         1) when user manually types /abc as the path params then it will get navigate to /settings component
+ * 
+ * 
+ * 
+ * 
+ * 
+ * !Also go through the How to install the talwind css in React application 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ */
+
