@@ -742,17 +742,58 @@ every time we cnahe the jsx of the component then that jsx will get auto rendere
  * 
  * 
  * 
- * !Also go through the How to install the talwind css in React application 
+ * !Also go through the How to install the talwind css in React application :
+ * 
+ * !steps to install the talwind css in your react application : 
+ * *    1)npm install -D tailwindcss postcss autoprefixer    (-D this defined it will go under the dev dependencies)
+  **    2)  npx tailwindcss init     (it will create the configuration file for your talwind)
+
+ * 
+ * 
+ * 
+//  * * @type {import('tailwindcss').Config} */
+// export default {
+//    !here I have to mension for which files the talwind css should get applied in content: []
+//   content: [],
+//   theme: {
+//     extend: {},
+//   },
+//   plugins: [],
+// }
+
+/*
+ !Post Css Library : 
+ *          it converts the actual classes of the talwind css into the actual css code for that I have to use post css library 
+ * 
+ * ^if I want to get to know the more about the css library then simply search for that library name with npm 
+ *    example : post css npm (Post Css Library)
  * 
  * 
  * 
  * 
  * 
+ !Types of dependencies : 
+ *              i)dependencies : are those dependencies which are actually required to run the your application  (it will also help to run the application in production)
+ *                        Example : react , react-dom
  * 
+ *                
+ *              ii)devDependencies : are those dependencies which are required while building the application at the development purpose of that software app 
+ *                        Example : vite ool CRA tool
+ * 
+ * 
+ 
+ ! cheat-sheet for talwind css : https://nerdcave.com/tailwind-cheat-sheet
 
 
 
-
+^How to give the css in react : 
+                  using object we can give 
+                  Example : 
+                          & style = {{
+                                   key : "value"   
+                                   background-color : "red"
+                                  
+                                    }}
 
 
 
