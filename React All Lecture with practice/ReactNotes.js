@@ -797,6 +797,51 @@ every time we cnahe the jsx of the component then that jsx will get auto rendere
 
 
 
+^IMBD 1 = just setup 
+^IMDB 2 = movies page and pagination
+^IMDB 3 =  TMDB API (The Movies database API), creating watch list and localstorage
+^IMDB 4 =  searching,sorting,filteration and Context API
+!Password and userName for TMDB API :
+userName : Manoj_Code_React
+password : IMDB@React 
+
+!two imp links of the TMDB : 
+https://developer.themoviedb.org/docs/getting-started
+https://developer.themoviedb.org/docs/authentication-application
+
+!API key : 39b6e395d9e668e23e0c51b81f844ad1
+API Read Access Token
+eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOWI2ZTM5NWQ5ZTY2OGUyM2UwYzUxYjgxZjg0NGFkMSIsIm5iZiI6MTcyNTQ1NDU4Ny4yMjc1NjYsInN1YiI6IjY2ZDg1NDk2YWU0NGViNjE5NjYwNDY3ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IU3Y48J-RiI4xpc0kMgNl9CDD0tCX0lP6L4Og-OaAEk
+
+!then to access the api go to the API referance page 
+
+
+!Library to make the rest api calls : 
+^ there is the one library that is used to make the rest api calls in React is (axios npm)
+
+
+
+!axios : 
+&Axios Response: The data from the server is automatically parsed as a JavaScript object by Axios, and it's available in the data property of the response object.
+
+
+&What is Rest API : 
+          ?rest API is act like the interface between the client and server and it is the one type of the API which will follow some rules will learn in up-comming classes
+          to understand in details lets understand again the client server architecture 
+          
+          ^client : 1)where the user interacts with application (in websites it will be browser ,for mobile App it will be that app UI)
+                     2) client will request for data 
+          
+          ^server : its an machine combination of hardware and software which serves the data to the client according to the clients request 
+
+
+
+
+          ^
+
+
+
+
 
 
 

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import movieImage from "/images/movie image.webp";
 import MoviesCarts from "./MoviesCarts";
 import Pagination from "./Pagination";
+import axios from "axios";
 
 const Movies = () => {
   // !lets take the one more state for the pagination That  I have to implement
@@ -43,6 +44,24 @@ const Movies = () => {
     },
   ]);
 
+
+
+  // !Now I want to add the movies dynamically so here again I will make the api call optimization can be done using the lifting up the state 
+
+  useEffect(() => {
+    axios.get(`https://api.themoviedb.org/3/trending/movie/day?api_key=39b6e395d9e668e23e0c51b81f844ad1&language=en-US&page=${pageNo}`)    //^using the page name as the query param to implement the pagination
+    .then((convertedResponse) => {
+      console.log("convertedResponse from Movies Componenet");
+      
+      console.log(convertedResponse);
+
+      // !now set the actual data to the movies 
+      setMovies(convertedResponse.data.results)       
+
+      
+    })
+  } , [pageNo])
+
   return (
     <div>
       {/* to just display the text as the trending movies  */}
@@ -59,7 +78,7 @@ const Movies = () => {
           movies.map((currentMovie, currentIndex) => {
             // &it should return the jsx that will be each time new cart having movioe image and its name
 
-            return <MoviesCarts currentMovie={currentMovie} />;
+            return <MoviesCarts currentMovie={currentMovie} uniqueKey={currentIndex}/>;
           })
         }
       </div>

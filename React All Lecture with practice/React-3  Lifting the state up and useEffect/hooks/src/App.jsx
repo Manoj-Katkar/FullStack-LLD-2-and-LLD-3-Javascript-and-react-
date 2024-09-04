@@ -29,7 +29,7 @@ function App() {
       {/* <TemperatureInput handleTemperatureChange={handleTemperatureChange} temperature={temperature}/> 
       <TemperatureOutput temperature={temperature}/> */}
       {/* <Effect/> */}
-      <Profile/>
+      {/* <Profile/> */}
     </>
   )
 }

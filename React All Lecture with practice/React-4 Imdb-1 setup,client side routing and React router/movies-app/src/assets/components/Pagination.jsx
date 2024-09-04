@@ -9,7 +9,7 @@ const Pagination = (props) => {
             onClick={handlePrevious}
             className="px-8"
             >
-            <i class="fa-solid fa-arrow-left"></i>
+            <i className="fa-solid fa-arrow-left"></i>
             </div>
 
             <div>{pageNo}</div>
@@ -20,7 +20,7 @@ const Pagination = (props) => {
 
             >
 
-            <i class="fa-solid fa-arrow-right"></i>
+            <i className="fa-solid fa-arrow-right"></i>
             </div>
     </div>
   )
