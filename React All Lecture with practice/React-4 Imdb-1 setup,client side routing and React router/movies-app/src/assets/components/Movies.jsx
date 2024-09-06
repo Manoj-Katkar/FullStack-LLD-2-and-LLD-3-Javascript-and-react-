@@ -46,6 +46,61 @@ const Movies = () => {
 
 
 
+
+  // All users fav movies will get added in watchlist state Array 
+  // !we have done this lifting up the state from the watchlist component 
+  const [watchlistArray , setWatchlistArray] = useState([]);
+
+
+  // Initialize watchlistArray from local storage when the component mounts
+  // !means when you are rendering Movies again from the watchlist in the UI read the data from the localStorage and make it as the state value 
+  
+  useEffect(() => {
+    const savedWatchlist = JSON.parse(localStorage.getItem("watchlistArray")) || [];
+    setWatchlistArray(savedWatchlist);
+  }, []);
+
+
+
+  // now to add the new movie that user likes in the watchlist array I will create the one function for that 
+  const addToWatchlist = (movie) => {
+    const updatedWatchlist = [...watchlistArray , movie];
+    setWatchlistArray(updatedWatchlist)
+
+    // then add it in the local storage 
+    localStorage.setItem("watchlistArray" , JSON.stringify(updatedWatchlist))
+
+    
+  }
+
+const removeFromWatchlist = (movie) => {
+  const filteredWatchlistArray = watchlistArray.filter((currentMovie) => {
+    if(currentMovie.id !== movie.id){
+      return true;
+    }
+    else{
+      return false;   //means if it is same remove that it should not be present in the filtered array 
+    }
+  });
+
+  setWatchlistArray(filteredWatchlistArray);
+
+  localStorage.setItem("watchlistArray" , JSON.stringify(filteredWatchlistArray))
+}
+
+  console.log(watchlistArray);
+
+
+
+
+  // !implementing the function to check that movie iss already there in localstorage or not 
+  const isAddedToWatchList = (movie) => {
+    return watchlistArray.some((watchlistMovie) => watchlistMovie.id === movie.id);
+  }
+
+
+
+
   // !Now I want to add the movies dynamically so here again I will make the api call optimization can be done using the lifting up the state 
 
   useEffect(() => {
@@ -61,6 +116,9 @@ const Movies = () => {
       
     })
   } , [pageNo])
+
+
+
 
   return (
     <div>
@@ -78,7 +136,7 @@ const Movies = () => {
           movies.map((currentMovie, currentIndex) => {
             // &it should return the jsx that will be each time new cart having movioe image and its name
 
-            return <MoviesCarts currentMovie={currentMovie} uniqueKey={currentIndex}/>;
+            return <MoviesCarts currentMovie={currentMovie} uniqueKey={currentIndex} addToWatchlist={addToWatchlist}  removeFromWatchlist={removeFromWatchlist}  isAddedToWatchList={isAddedToWatchList}/>;
           })
         }
       </div>

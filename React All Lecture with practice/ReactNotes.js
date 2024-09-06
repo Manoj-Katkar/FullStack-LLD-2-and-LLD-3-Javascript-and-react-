@@ -837,7 +837,10 @@ eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOWI2ZTM5NWQ5ZTY2OGUyM2UwYzUxYjgxZjg0NGFkMSIsIm5
 
 
 
-          ^
+
+ 
+!How the localStorage will work in the react  : it works same as how it was working in the javascript methods getIteam(key) , setItem(key , value) , .clear() , removeItem(key)
+
 
 
 
