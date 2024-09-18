@@ -843,15 +843,61 @@ eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOWI2ZTM5NWQ5ZTY2OGUyM2UwYzUxYjgxZjg0NGFkMSIsIm5
 
 
 
+^================-========================== Imdb-4: ========================================
+
+!Agenda : 
+      1)searching,
+      2)sorting,
+      3)filteration and 
+      4)Context API , 
+      5)Props drilling how to avoid it while designing the app
+      6)useContext() hook in react
+      7)what is the lazy loadinggo through it 
+
+^What is props drilling : 
+
+!🟢 Props Drilling in React:
+  1️⃣ Passing data from a parent component to deeply nested child components.
+🔵 Problem:
+  2️⃣ Intermediate components receive props, even when they don't need them.
+🟠 Example:
+
+const Grandparent = () => {
+  const message = "Hello from Grandparent!";
+  
+  return <Parent message={message} />; // Passing 'message' down through 'Parent'
+};
+
+const Parent = ({ message }) => {
+  return <Child message={message} />; // Passing 'message' further down through 'Child'
+};
+
+const Child = ({ message }) => {
+  return <p>{message}</p>; // 'Child' finally uses the 'message'
+};
+
+🟡 Why It’s a Problem:
+  3️⃣ It makes code harder to maintain when components are deeply nested.
+  4️⃣ Every time the data changes, each component in the hierarchy must pass it down.
+
+! Solutions:
+  🟢 5️⃣ Use Context API to pass data directly to deeply nested components.
+  🔵 6️⃣ Use state management libraries like Redux, MobX, or Zustand to avoid passing props manually.
 
 
 
 
+!Context API : Context is a global scope that can have any data (state or function) which devlopers want to tranfer from any component to any component it does not matter what the hirarchy is 
 
+^using the context API : I can create the global state that will act as the central for the its all children component so wherever I needed i can get it using the hook 
+!Syntax : 
+*         useContext(Name of the context . jsx file ) hook 
 
+          i) it will return the all the things that I am providing to the all the children components in the form of the object 
+          ii)so to access that state , updater function or any other functions I have to do the object destructuring over there 
+          iii) Note : I have to make that context component Wrapper to the parent of the every component inside the Appjsx file itself 
 
-
-
+   benifits useContext() : so because of this I do not have to create the state at each component seperatlly and maintain it and its also resolve the issue of the props drilling        
 
 
 
