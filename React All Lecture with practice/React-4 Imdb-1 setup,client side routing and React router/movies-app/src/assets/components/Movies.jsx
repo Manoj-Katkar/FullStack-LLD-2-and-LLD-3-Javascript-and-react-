@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import movieImage from "/images/movie image.webp";
 import MoviesCarts from "./MoviesCarts";
 import Pagination from "./Pagination";
 import axios from "axios";
+import MovieContext from "../../Context/MovieContext";
 
 const Movies = () => {
   // !lets take the one more state for the pagination That  I have to implement
@@ -47,48 +48,55 @@ const Movies = () => {
 
 
 
-  // All users fav movies will get added in watchlist state Array 
-  // !we have done this lifting up the state from the watchlist component 
-  const [watchlistArray , setWatchlistArray] = useState([]);
+//   // All users fav movies will get added in watchlist state Array 
+//   // !we have done this lifting up the state from the watchlist component 
+//   const [watchlistArray , setWatchlistArray] = useState([]);
 
 
-  // Initialize watchlistArray from local storage when the component mounts
-  // !means when you are rendering Movies again from the watchlist in the UI read the data from the localStorage and make it as the state value 
+//   // Initialize watchlistArray from local storage when the component mounts
+//   // !means when you are rendering Movies again from the watchlist in the UI read the data from the localStorage and make it as the state value 
   
-  useEffect(() => {
-    const savedWatchlist = JSON.parse(localStorage.getItem("watchlistArray")) || [];
-    setWatchlistArray(savedWatchlist);
-  }, []);
+//   useEffect(() => {
+//     const savedWatchlist = JSON.parse(localStorage.getItem("watchlistArray")) || [];
+//     setWatchlistArray(savedWatchlist);
+//   }, []);
 
 
 
-  // now to add the new movie that user likes in the watchlist array I will create the one function for that 
-  const addToWatchlist = (movie) => {
-    const updatedWatchlist = [...watchlistArray , movie];
-    setWatchlistArray(updatedWatchlist)
+//   // now to add the new movie that user likes in the watchlist array I will create the one function for that 
+//   const addToWatchlist = (movie) => {
+//     const updatedWatchlist = [...watchlistArray , movie];
+//     setWatchlistArray(updatedWatchlist)
 
-    // then add it in the local storage 
-    localStorage.setItem("watchlistArray" , JSON.stringify(updatedWatchlist))
+//     // then add it in the local storage 
+//     localStorage.setItem("watchlistArray" , JSON.stringify(updatedWatchlist))
 
     
-  }
+//   }
 
-const removeFromWatchlist = (movie) => {
-  const filteredWatchlistArray = watchlistArray.filter((currentMovie) => {
-    if(currentMovie.id !== movie.id){
-      return true;
-    }
-    else{
-      return false;   //means if it is same remove that it should not be present in the filtered array 
-    }
-  });
+// const removeFromWatchlist = (movie) => {
+//   const filteredWatchlistArray = watchlistArray.filter((currentMovie) => {
+//     if(currentMovie.id !== movie.id){
+//       return true;
+//     }
+//     else{
+//       return false;   //means if it is same remove that it should not be present in the filtered array 
+//     }
+//   });
 
-  setWatchlistArray(filteredWatchlistArray);
+//   setWatchlistArray(filteredWatchlistArray);
 
-  localStorage.setItem("watchlistArray" , JSON.stringify(filteredWatchlistArray))
-}
+//   localStorage.setItem("watchlistArray" , JSON.stringify(filteredWatchlistArray))
+// }
 
-  console.log(watchlistArray);
+  // console.log(watchlistArray);
+
+
+  // ^================================I will context API through that I get the state and props ============================
+
+  let {watchlistArray , setWatchlistArray , addToWatchlist , removeFromWatchlist} = useContext(MovieContext);
+
+
 
 
 
@@ -136,7 +144,7 @@ const removeFromWatchlist = (movie) => {
           movies.map((currentMovie, currentIndex) => {
             // &it should return the jsx that will be each time new cart having movioe image and its name
 
-            return <MoviesCarts currentMovie={currentMovie} uniqueKey={currentIndex} addToWatchlist={addToWatchlist}  removeFromWatchlist={removeFromWatchlist}  isAddedToWatchList={isAddedToWatchList}/>;
+            return <MoviesCarts currentMovie={currentMovie} key={currentIndex} addToWatchlist={addToWatchlist}  removeFromWatchlist={removeFromWatchlist}  isAddedToWatchList={isAddedToWatchList}/>;
           })
         }
       </div>

@@ -897,10 +897,82 @@ const Child = ({ message }) => {
           ii)so to access that state , updater function or any other functions I have to do the object destructuring over there 
           iii) Note : I have to make that context component Wrapper to the parent of the every component inside the Appjsx file itself 
 
-   benifits useContext() : so because of this I do not have to create the state at each component seperatlly and maintain it and its also resolve the issue of the props drilling        
+   benifits useContext() : so because of this I do not have to create the state at each component seperatlly and maintain it and its also resolve the issue of the props drilling     
+   
+   
+
+   !Context API 
+   !hooks are used to achieve the functionality hence we will not use the custom hooks 
+
+/**
+^     * ### React Context API - 
+
+**    The **Context API** in React is a mechanism for managing and passing global state between components, eliminating the need for "prop drilling," where props are manually passed down through each layer of components. It allows components to share data without having to explicitly pass props through every intermediate level.
+
+    #### Key Components of the Context API:
+
+ **   1. **Context Creation (`createContext`)**:
+      - `React.createContext()` is used to create a new context. This function returns a context object that will hold and manage the shared state.
+
+ **   2. **Provider Component**:
+      - The **Provider** is a component that wraps around parts of the app that need access to the context data.
+      - It takes a `value` prop, which is the data you want to share with child components.
+
+ **   3. **Consumer Components**:
+      - **Consumers** are components that can access the shared context data. In function components, you can use the `useContext` hook to access the context value.
+
+ **   4. **`useContext` Hook**:
+      - In functional components, `useContext()` allows components to subscribe to context changes and retrieve the shared data more easily.
+
+  **  #### When to Use Context API:
+    - **Global State**: When you need to manage global application state like user authentication, themes, or application settings.
+    - **Avoid Prop Drilling**: When state or data needs to be accessed by deeply nested components, Context API simplifies the process.
+
+ **   #### Benefits:
+    - Simplifies state management in medium to large-scale apps.
+    - Reduces the need for passing props through multiple layers of components.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+^================-========================== Redux-1 ========================================
+
+!Agenda : 
+      1)redux and its advantages 
+      2)how redux works 
+      3)installing redux and redux toolkit 
+      4)actual integrating redux in react applications //^see in the counter application 
+      5) also create the (to do list app) to see how the redux works 
+      6)
+      7)
+    
+      
+!What is redux : it is the javascript third party library which provides global state to your react application 
 
  */
 

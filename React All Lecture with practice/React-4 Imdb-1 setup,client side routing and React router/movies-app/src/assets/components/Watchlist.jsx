@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import MovieContext from '../../Context/MovieContext';
 
 
 const Watchlist = () => {
 
   // !I will take the one state to store the watchlist 
-  const [watchlistData , setWatchlistData] = useState([]);
+  // const [watchlistArray , setWatchlistArray] = useState([]);
+
+  // ^===========================to get the watchlistArray we will use the context API ====================
+
+  let {watchlistArray , setWatchlistArray} = useContext(MovieContext);
+
+  
 
   // ^I will use the state that I have defined in the MovieContext that is common to alkl my child components so I can directlly maintain that state in MovieContext component I will import all things that component is providing to me using the useContext() hook 
   // !I am not using useContext() in this component because naming convension differs here 
@@ -46,22 +53,24 @@ const Watchlist = () => {
 
   // !then I will use the useEffect hook with empty array as the dependancy to fetch the all details form the local storage at the first rendering itself 
 
-  useEffect(()=> {
-    const favMovieData = JSON.parse(localStorage.getItem("watchlistArray"));
+  // ^====================================Not using below useEffect because state get updated via context API ================
 
-    if(favMovieData){
-      //means user liks or dislikes some data is present so show that 
-      setWatchlistData(favMovieData);
+  // useEffect(()=> {
+  //   const favMovieData = JSON.parse(localStorage.getItem("watchlistArray"));
 
-    }
+  //   if(favMovieData){
+  //     //means user liks or dislikes some data is present so show that 
+  //     setWatchlistArray(favMovieData);
+
+  //   }
 
 
-  } , [])
+  // } , [])
 
 
   // !to get the all the genre names that each movies is having at the starting itself 
   useEffect(() => {
-    const genresArray = watchlistData.map((currentMovie , index) => {
+    const genresArray = watchlistArray.map((currentMovie , index) => {
       return genreIds[currentMovie.genre_ids[0]];
     });
 
@@ -92,7 +101,7 @@ const Watchlist = () => {
     
     
     
-  } , [watchlistData])
+  } , [watchlistArray])
 
   console.log("genreList" , genreList);
 
@@ -112,13 +121,13 @@ const Watchlist = () => {
         // for Ascending A - B and for descending = B - A
 
         // Create a new array to avoid mutating the state
-        let sortedAscending = [...watchlistData]; //created the copy of the array
+        let sortedAscending = [...watchlistArray]; //created the copy of the array
 
         sortedAscending.sort((movie2, movie1) => {
           return movie2.vote_average - movie1.vote_average;
         });
 
-        setWatchlistData(sortedAscending);
+        setWatchlistArray(sortedAscending);
         console.log("Updated Watchlist", sortedAscending);
       };
 
@@ -130,13 +139,13 @@ const Watchlist = () => {
 
         // hight to low rating sort it 
         // Create a new array to avoid mutating the state
-        let sortedDescending = [...watchlistData];   //created the copy of the array
+        let sortedDescending = [...watchlistArray];   //created the copy of the array
 
         sortedDescending.sort((movie2, movie1) => {
           return movie1.vote_average - movie2.vote_average;
         });
 
-        setWatchlistData(sortedDescending);
+        setWatchlistArray(sortedDescending);
         console.log("Updated Watchlist", sortedDescending);
       };
 
@@ -144,7 +153,7 @@ const Watchlist = () => {
   // !writing the filter function according to the user input text that I have stored in the one state that is searchText
 
   const filterWatchListMovies = () => {
-    const copyOfWatchList = [...watchlistData];
+    const copyOfWatchList = [...watchlistArray];
 
     let filteredSearchMovies = copyOfWatchList.filter((currenMovie , Index) => {
       if(currenMovie.title.toLowerCase().includes(searchText.toLowerCase())){
@@ -158,10 +167,10 @@ const Watchlist = () => {
     // now update the value of the state 
     if(searchText){
       //means search text is having some value then only change the state otherwise do not change it 
-      setWatchlistData(filteredSearchMovies);
+      setWatchlistArray(filteredSearchMovies);
     }
     else if(searchText === ""){
-      setWatchlistData(JSON.parse(localStorage.getItem("watchlistArray")));
+      setWatchlistArray(JSON.parse(localStorage.getItem("watchlistArray")));
     }
     
     
@@ -208,7 +217,7 @@ const Watchlist = () => {
         setSearchText(event.target.value);
         
         if(searchText === ""){
-          setWatchlistData(JSON.parse(localStorage.getItem("watchlistArray")));
+          setWatchlistArray(JSON.parse(localStorage.getItem("watchlistArray")));
         }
       }}
       className="w-full max-w-md px-4 py-2 border-2 border-blue-400 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gradient-to-r from-gray-100 via-white to-gray-100 hover:bg-gradient-to-r hover:from-blue-100 hover:via-white hover:to-blue-100 transition duration-300 ease-in-out text-gray-700"
@@ -251,7 +260,7 @@ const Watchlist = () => {
       </thead>
 
       <tbody>
-            {watchlistData
+            {watchlistArray
               .filter((currentMovie) => {
                 //^ this filter I am applying for the according to the currentGenre that user I have selected using the buttons that is shown in the UI 
                 if(currentGenre === "ALL"){
