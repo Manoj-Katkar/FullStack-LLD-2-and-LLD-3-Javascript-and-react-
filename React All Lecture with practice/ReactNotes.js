@@ -972,7 +972,418 @@ const Child = ({ message }) => {
       7)
     
       
-!What is redux : it is the javascript third party library which provides global state to your react application 
+!What is redux : it is the javascript third party library which provides global state to your react application means we can                create the global state using the redux 
+                  i)it also do manages the state and handle issue of the props drilling 
+
+
+  ^To set up Redux and Redux Toolkit in a React application, follow these steps:
+                  1)Install Redux, Redux Toolkit, and React-Redux.
+                  2)Create feature slices using createSlice().
+                  3)Create the Redux store using configureStore(). //store means the collection of the all slices
+                  4)Provide the store to the React application using the Provider. = <Provider store={store}><App/></Provider>  
+                              i)we can do this into the App.jsx or main.jsx because both are the parent of the all the componenets 
+                              
+                  5)Use useSelector to get the state and useDispatch to dispatch actions in your components (It will perform the consuming step).
+                                i)const count = useSelector(store => {return store.counterState.count});
+                                ii)const dispatch = useDispatch();
+
+                 6)for that particular slice All the buissness Logic I have to put it inside the reducers of that Slice 
+                 
+                 7)action contains the 2 things : 
+                              i)type      : it will be the name of the reducer that I want to invoke from that Slice 
+                              ii)payload  :  this is the data that I am passing from the dispatch while inviking the reducer of that Slice that is type only (type and reducer refer to same that is functionality that we have added in the reducers with differant names )
+
+                             iii)first To get the all the reducers of that particular Slice I have to import the all the actions because actions only denoting to my reducers via type property 
+                                          ^so import the actions  
+                                          ^ const actions = NameOfTheSlice.actions
+
+
+                 7) folder structure I have to follow while creating the slices and the store : 
+                        src/
+                            ├── components/      // Your React components
+                            ├── features/
+                            │   └── sliceName/              //just another folder with proper slice Name inside that maintain the slice logic
+                            │       ├── sliceNameSlice.js  // Define the slice
+                            │       ├── sliceNameSelectors.js  // Optional: Selectors for the slice
+                            ├── store/
+                            │   └── store.js      // Main Redux store configuration
+                            └── App.js            // Main React component
+
+
+
+   !Understanding redux with Real-World Shop Example in Redux:
+   
+   ^Shop = Store:
+              The shop represents the store in Redux. Just like a shop stores all the items (products, inventory), the Redux store holds all the application's state. This includes the data related to various sections like electronics, clothes, etc.
+
+    ^Sections = Slices:
+              The sections of the shop (like Electronics, Hardware, Clothes) are like slices in Redux. Each slice manages a part of the state. For example, the Electronics slice manages products like laptops and mobiles, while the Clothes slice handles shirts and pants.
+
+
+    ^Owner = Dispatcher:
+              The owner of the shop is the dispatcher. The owner controls how the shop works by giving orders. Similarly, the dispatcher in Redux sends instructions (actions) to the store to update the state (like adding/removing products).
+
+
+    ^Order = Action:
+              An order is what the user (customer) places in the shop. In Redux, this is called an action. Actions tell the store what to do (e.g., "Add product to cart," "Remove item from inventory").
+
+
+    ^User = Component:
+              The user is a React component in the Redux system. Just like the customer interacts with the shop (by browsing and placing orders), React components interact with the Redux store by dispatching actions and consuming data from the store.
+
+
+
+
+   !Diagrammatic Representation :            
+
+              +----------------------------------------------------+
+              |                       SHOP (Store)                |
+              |   +-----------------+  +------------------------+ |
+              |   | Electronics      |  | Clothes                | |
+              |   | (Slice)          |  | (Slice)                | |
+              |   +-----------------+  +------------------------+ |
+              +----------------------------------------------------+
+                        ^                       ^
+                        | (Dispatcher)           |
+                  +------------+          +------------+
+                  |  Owner     |  ----->  |  Action    | (Order)
+                  +------------+          +------------+
+                        ^                         |
+                        (User / Component)          |
+                  +----------------------------+   |
+                  | Customer / React Component  |<--+
+                  +----------------------------+
+
+
+
+
+
+
+   !To use Redux in a React application, you can follow these basic steps:
+
+   !================================installing the packages needed for redux =================================
+
+            ^1). Install Redux and React-Redux
+            First, you need to install the necessary libraries:
+            bash
+            code:
+            npm install @reduxjs/toolkit  react-redux
+
+
+
+
+
+
+ !================================ Create feature slices using createSlice()=================================== ===          
+
+
+            ^2).Create feature slices using createSlice(). Create Reducers (Slices)   
+            ^                         1)(for every global state that you want to maintain I have to create the new Slice for that and then put the all the Slices in the store )  (all slice are functionality only so it will be .js file )  
+
+            ^                          2) All Slices are going to be the object only 
+
+
+
+            Reducers manage specific parts of the state. Each reducer is like a section of the shop.
+            javascript
+            Copy code
+
+            import {createSlice} from "@reduxjs/toolkit"
+
+           !to create the Slice we have to use the createSlice method that is present inside the "@reduxjs/toolkit"
+
+            const counterSlice = createSlice({
+                name:"counterSlice",
+
+                 ^initialState can be anything likle how we were creating the differant data type state in useState() hook like number , string , object , array anything we can give for the initialState but function is not allowed to pass as the initialState value 
+                ^all the keys name should be same like name , initialState 
+
+                initialState:{
+                    count:0
+                },
+
+               ^reducers contain the all the buissness logic 
+                reducers:{
+                    increment:((state , action) => {
+                        console.log("payload : " , action);
+
+                         !here the actionis object inside that key is payload where the  data that is passed it is getting recived 
+                        //https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow (refer this link to understand the flow in better way )
+                        state.count = state.count + action.payload;
+                    }),
+
+                    decrement:((state , action) => {
+                        state.count = state.count - action.payload;
+                    })
+                }
+
+
+            });
+
+
+            export default counterSlice;
+
+
+
+
+
+
+
+
+!=================================== Create the Redux store using configureStore() ===========================================
+
+
+
+            ^3). Create the Redux store using configureStore(). //store means the collection of the all slices
+            The store holds your entire application's state. (1 app 1 store only)
+            javascript
+            code:
+
+
+           !Note : For one app there will be only one store going to be there 
+
+            ^first import the configureStore method from "@reduxjs/toolkit" which will help to create the store 
+
+            import { configureStore } from "@reduxjs/toolkit";
+
+            ^ Now I  have to import the all the SLices 
+
+            import counterSlice from "../features/counter/counterSlice";
+
+            ^Now I have to import the toDoSlice here 
+            import ToDoSlice from "../features/toDo/ToDoSlice";
+
+
+            !Now lets create the store using configureStore() method which takes argument as the object only 
+
+            const store = configureStore({
+
+                 !here I have to mension the all reducers for differant - differant Slices that I will import 
+                 ^redcer is the place where we keep the all the business logic 
+
+                reducer:{
+                    
+                    counterState:counterSlice.reducer ,   //*here I am importing the all the reducers from the counterSlice inside the one key counterState
+                    
+                    toDoState:ToDoSlice.reducer
+                }
+            });
+
+            export default store;
+
+
+
+
+
+
+
+
+
+!============================================= Provide the store to the React application using the Provide r=====================================
+
+
+            ^4)Provide the store to the React application using the Provider. = <Provider store={store}><App/></Provider>  
+                              i)we can do this into the App.jsx or main.jsx because both are the parent of the all the componenets 
+
+            code: 
+
+            import { StrictMode } from 'react'
+            import { createRoot } from 'react-dom/client'
+            import App from './App.jsx'
+            import './index.css'
+            import { Provider } from 'react-redux'
+            import store from './store/store';
+
+            createRoot(document.getElementById('root')).render(
+              <StrictMode>
+                <Provider store={store}>   //^here Provider is given with store 
+                    <App />
+                </Provider>
+              </StrictMode>,
+            )
+
+
+
+
+
+            
+
+
+
+
+!============================ Use useSelector to get the state and useDispatch to dispatch actions in your components ========================================
+
+
+
+            ^5)Use useSelector to get the state and useDispatch to dispatch actions in your components (It will perform the consuming step).
+                                i)const count = useSelector(store => {return store.counterState.count});
+                                ii)const dispatch = useDispatch();
+
+              code : 
+
+                      import React, { useState } from 'react'
+                      import { useDispatch, useSelector } from 'react-redux'
+                      import store from '../store/store'
+                      import counterSlice from '../features/counter/counterSlice'
+
+                      ! importing the all the actions of that particular Slice 
+
+                      const actions = counterSlice.actions;
+
+                      const CounterRedux = () => {
+
+                          //! I will take the state from the redux and also update the state and also give the functionality using the slices inside that mension the reducers 
+
+                       ^using the useSelector(store) I will access the state value from the store that will go inside that Slice and provide me that value 
+
+                        & useSelector(store) :  
+                                                // i)it will take the argument store 
+                                                // ii)now from that store I have to access the that Slice and from that Slice I will get the state value (redux internally will handle this things)
+
+                        let count = useSelector(store => {return store.counterState.count});  //!this is how we can read the global state created for the counter 
+
+
+                        // !now to pass the action then I have to use the dispatch function that I will get it from the useDispath() hook 
+
+                        let dispatch = useDispatch();
+
+                        console.log("dispatch function  ", dispatch);
+
+
+
+                        
+
+                          let IncrementCounter = (event) => {
+
+                            // !Now I am dispatching with the help of the actions in function I can pass the parameters also that will be taken as the payload 
+                            dispatch(actions.increment(10));
+
+
+                          }
+
+                          let DecrementCounter = (event) => {
+                            
+                            // !Now I am dispatching with the help of the actions in function I can pass the parameters also that will be taken as the payload 
+                            dispatch(actions.decrement(10));
+                          }
+
+
+
+                        return (
+                          <div>
+                              <h1>Count : {count}</h1>
+                              <button onClick={IncrementCounter}>Increment</button>
+                            
+                              <button onClick={DecrementCounter}>Decrement</button>
+                          </div>
+                        )
+                      }
+
+                      export default CounterRedux
+
+
+
+
+
+
+
+
+
+
+!==========================================  Any Slice keep Buissness Logic  ========================================================
+
+            ^6)for that particular slice All the buissness Logic I have to put it inside the reducers of that Slice 
+              code : (Example of the Slice which keep Buissness Logic)
+                  import {createSlice} from "@reduxjs/toolkit"
+
+                  // !to create the Slice we have to use the createSlice method that is present inside the "@reduxjs/toolkit"
+
+                  const counterSlice = createSlice({
+                      name:"counterSlice",
+
+                      // ^initialState can be anything likle how we were creating the differant data type state in useState() hook like number , string , object , array anything we can give for the initialState but function is not allowed to pass as the initialState value 
+                      // ^all the keys name should be same like name , initialState 
+
+                      initialState:{
+                          count:0
+                      },
+
+                      // ^reducers contain the all the buissness logic 
+                      reducers:{
+                          increment:((state , action) => {
+                              console.log("payload : " , action);
+
+                              // !here the actionis object inside that key is payload where the  data that is passed it is getting recived 
+                              // https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow (refer this link to understand the flow in better way )
+                              state.count = state.count + action.payload;
+                          }),
+
+                          decrement:((state , action) => {
+                              state.count = state.count - action.payload;
+                          })
+                      }
+
+
+                  });
+
+
+                  export default counterSlice;
+
+
+
+            ^7)action contains the 2 things : 
+                              i)type      : it will be the name of the reducer that I want to invoke from that Slice 
+                              ii)payload  :  this is the data that I am passing from the dispatch while invoking the reducer of that Slice that is type only (type and reducer refer to same that is functionality that we have added in the reducers with differant names )
+
+                             iii)first To get the all the reducers of that particular Slice I have to import the all the actions because actions only denoting to my reducers via type property 
+                                          ^so import the actions  
+                                          ^ const actions = NameOfTheSlice.actions
+
+
+
+
+
+    !diagram of the data flow in redux ? : 
+
+
+        +-----------------------+           +---------------------------+
+        |    React Component     |           |         Action            |
+        |  (UI/User Interaction) |           | (e.g., { type: 'ADD_ITEM',|
+        +-----------+------------+           |           payload })       |
+                    |                            +---------------------------+
+                    |                             |
+                    v                             v
+        +-----------+----------------------------+-------------------------+
+        |                       Dispatcher (dispatch)                      |
+        |    (Sends Action to Reducer when user interacts with UI)          |
+        +-------------------------------------------------------------------+
+                                        |
+                                        v
+        +-------------------------------------------------------------------+
+        |                              Reducer                              |
+        |  (A function that receives the current state and the action,      |
+        |   then returns the new state based on the action type)            |
+        +-------------------------------------------------------------------+
+                                        |
+                                        v
+        +-------------------------------------------------------------------+
+        |                              Store                                |
+        |   (Holds the entire application state and updates it with the     |
+        |    new state received from the reducer)                           |
+        +-------------------------------------------------------------------+
+                                        |
+                                        v
+        +---------------------+                          +--------------------+
+        |     React Component |<-------------------------|  Updated State     |
+        |     (Renders new UI |      (Subscribes to the   | (From Redux Store) |
+        |      based on state)|       store and updates) |                    |
+        +---------------------+                          +--------------------+
+
+
+
+  !Note : I have the lifecyle of redux image in the images folder do refer that for better understanding of the redux   
+  
+  ^learned abou the redux tookit how to implement it while creating the large scale applications , learned about how to configure store , create the slice . Provide the store , and also add the reducers in any Slice , also learned useSelector() hook used to access the state and useDispatch() whcih return the function so I can change the state using the dispatch(actions.reducerName(pass payload here)) 
 
  */
 

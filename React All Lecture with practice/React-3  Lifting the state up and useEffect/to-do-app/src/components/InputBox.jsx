@@ -1,19 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const InputBox = () => {
+const InputBox = (props) => {
     let {addTask} = props;
-    const handleInput = (e) => {
-      // Add code here
-      addTask(e);
-  
-    };
-    const addTaskChild = () => {
-      // Add code here
-  
-    };
+
+      // lets take the one state to store the current task entered by the user 
+      let [currentTask , setCurrentTask] = useState("");
+
+      const handleInput = (e) => {
+        // Add code here
+        setCurrentTask(e.target.value);
+
+      };
+      const addTaskChild = () => {
+        // Add code here
+        addTask(currentTask);
+
+        //also I have to make the state value as the empty again 
+        setCurrentTask("");
+      };
+
+
     return (
       <div className="inputbox">
-        <input type="text" />
+        <input type="text" value={currentTask} onChange={handleInput}/>
   
         <button onClick={addTaskChild}>Add Task</button>
       </div>
