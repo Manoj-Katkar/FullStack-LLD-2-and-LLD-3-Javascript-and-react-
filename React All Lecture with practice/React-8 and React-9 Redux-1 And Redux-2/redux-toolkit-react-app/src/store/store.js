@@ -10,6 +10,7 @@ import counterSlice from "../features/counter/counterSlice";
 
 // ^Now I have to import the toDoSlice here 
 import ToDoSlice from "../features/toDo/ToDoSlice";
+import userSlice from "../features/user/userSlice";
 
 
 // !Now lets create the store using configureStore() method which takes argument as the object only 
@@ -23,7 +24,8 @@ const store = configureStore({
         
         counterState:counterSlice.reducer ,   //*here I am importing the all the reducers from the counterSlice inside the one key counterState
         
-        toDoState:ToDoSlice.reducer
+        toDoState:ToDoSlice.reducer,
+        userState:userSlice.reducer
     }
 });
 

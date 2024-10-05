@@ -4,6 +4,9 @@ import MoviesCarts from "./MoviesCarts";
 import Pagination from "./Pagination";
 import axios from "axios";
 import MovieContext from "../../Context/MovieContext";
+import { useDispatch, useSelector } from "react-redux";
+import store from "../../store/store";
+import fetchMoviesMiddleware from "../../middlewares/fetchMoviesMiddleware";
 
 const Movies = () => {
   // !lets take the one more state for the pagination That  I have to implement
@@ -22,28 +25,37 @@ const Movies = () => {
   // In this second class of the IMDB we will use use the static data so I will be using useState() hook here
   // !I will create the one state to store the movies
 
-  let [movies, setMovies] = useState([
-    {
-      url: `${movieImage}`,
-      title: "Movie 1",
-    },
-    {
-      url: `${movieImage}`,
-      title: "Movie 1",
-    },
-    {
-      url: `${movieImage}`,
-      title: "Movie 1",
-    },
-    {
-      url: `${movieImage}`,
-      title: "Movie 1",
-    },
-    {
-      url: `${movieImage}`,
-      title: "Movie 1",
-    },
-  ]);
+  // let [movies, setMovies] = useState([
+  //   {
+  //     url: `${movieImage}`,
+  //     title: "Movie 1",
+  //   },
+  //   {
+  //     url: `${movieImage}`,
+  //     title: "Movie 1",
+  //   },
+  //   {
+  //     url: `${movieImage}`,
+  //     title: "Movie 1",
+  //   },
+  //   {
+  //     url: `${movieImage}`,
+  //     title: "Movie 1",
+  //   },
+  //   {
+  //     url: `${movieImage}`,
+  //     title: "Movie 1",
+  //   },
+  // ]);
+
+  //! rather than taking the local state for movies I will take it one global state using redux and that I will use here 
+
+  let {movies , error , loading} = useSelector((store) => {
+    return store.movieState;
+  })
+
+  // also take the one dispatch middleware 
+  let dispatch = useDispatch();
 
 
 
@@ -112,20 +124,44 @@ const Movies = () => {
   // !Now I want to add the movies dynamically so here again I will make the api call optimization can be done using the lifting up the state 
 
   useEffect(() => {
-    axios.get(`https://api.themoviedb.org/3/trending/movie/day?api_key=39b6e395d9e668e23e0c51b81f844ad1&language=en-US&page=${pageNo}`)    //^using the page name as the query param to implement the pagination
-    .then((convertedResponse) => {
-      console.log("convertedResponse from Movies Componenet");
+    // axios.get(`https://api.themoviedb.org/3/trending/movie/day?api_key=39b6e395d9e668e23e0c51b81f844ad1&language=en-US&page=${pageNo}`)    //^using the page name as the query param to implement the pagination
+    // .then((convertedResponse) => {
+    //   console.log("convertedResponse from Movies Componenet");
       
-      console.log(convertedResponse);
+    //   console.log(convertedResponse);
 
-      // !now set the actual data to the movies 
-      setMovies(convertedResponse.data.results)       
-
+    //   // !now set the actual data to the movies 
+    //   setMovies(convertedResponse.data.results)     
+    
       
-    })
+    // })
+
+
+        //!I will write the above logic in the middlewares 
+
+        dispatch(fetchMoviesMiddleware(pageNo))
+
+        console.log(movies);
+        
+
+
+
   } , [pageNo])
 
 
+
+  // !now according to the condition my UI should get updated 
+  if(loading){
+    return(
+      <h1>Loading....................</h1>
+    )
+  }
+
+  if(error){
+    return (
+      <h1>Something went wrong Error</h1>
+    )
+  }
 
 
   return (

@@ -973,11 +973,15 @@ const Child = ({ message }) => {
     
       
 !What is redux : it is the javascript third party library which provides global state to your react application means we can                create the global state using the redux 
-                  i)it also do manages the state and handle issue of the props drilling 
+                  ii)Or Redux is the third party javascript state management tool 
+                  iii)Redux Works with All the frontend Frameworks like React , Vue ,Angular 
+                  iii)it also do manages the state and handle issue of the props drilling 
 
 
   ^To set up Redux and Redux Toolkit in a React application, follow these steps:
-                  1)Install Redux, Redux Toolkit, and React-Redux.
+                  1)Install Redux, Redux Toolkit, and react-Redux.
+                        i)use this command = npm install @reduxjs/toolkit react-redux
+
                   2)Create feature slices using createSlice().
                   3)Create the Redux store using configureStore(). //store means the collection of the all slices
                   4)Provide the store to the React application using the Provider. = <Provider store={store}><App/></Provider>  
@@ -1385,5 +1389,124 @@ const Child = ({ message }) => {
   
   ^learned abou the redux tookit how to implement it while creating the large scale applications , learned about how to configure store , create the slice . Provide the store , and also add the reducers in any Slice , also learned useSelector() hook used to access the state and useDispatch() whcih return the function so I can change the state using the dispatch(actions.reducerName(pass payload here)) 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ^================-========================== Redux-2 ========================================
+
+
+  !Agenda : 
+      1)Principles Of Redux  
+      2)Redux Dev tools  (Extension In Our Browser to debug the redux)
+      3)Middlewares In Redux 
+      4)Integrate redux in Movies App 
+
+
+
+
+
+    ^1)Principles Of Redux : 
+                        !i)Each App Should Have Single Source of Truth means only One store for one react Application 
+                                    *1)means if multiple componenets are maintaining their own state for the dark mode of the application so to whom I should consider that will become the big problem to give the dark mode functionality to the user hence there should be one single source of truth should be their that is redux store from that using reducer we can get to know because we will maintain the on Slice for the Dark Mode so it will become easy to get the accurate value of the dark mode 
+
+                        !ii)for All the components of react state is read-only (Means react components can not able to mutate the state directlly )
+                        !iii)Changes to State are made by pure functions (Means all slice reducers functions should be pure functions only)
+
+
+    ^Differance between pure and impure functions in javascript : 
+    
+        ! Pure Function Example
+        //* - Always returns the same result for the same input
+        //* - No side effects, doesn't modify anything outside its scope
+
+        function add(a, b) {
+          return a + b; // Pure: The result depends only on inputs a and b
+        }
+
+        ! Pure Function Example
+        //* - Creates a new array without modifying the original one
+        function multiplyByTwo(arr) {
+          return arr.map(num => num * 2); // Pure: No external side effects, always returns the same result for the same input
+        }
+
+
+        ! Impure Function Example
+        //* - Relies on and modifies an external variable (count)
+
+        let count = 0; // External state
+
+        function increment() {
+          count += 1; // Impure: Modifies external state
+          return count; // Impure: Result changes based on external state
+        }
+
+
+        ! Impure Function Example
+        //* - Makes an external API call (side effect), result depends on external factors (network, server, etc.)
+
+        function fetchData(url) {
+          return fetch(url) // Impure: External HTTP request
+            .then(response => response.json()); // Impure: Depends on external server
+        }
+
+
+
+
+
+
+
+
+
+      ^3)Middlewares In Redux  : It is a pieace of code which sit between component and your Slice  which help them to iteract between each other 
+
+      !Where the redux middleware sits : it seats between redux-Slice and the react-components 
+
+      !Note : i)middleware is just the fancy name essentially it is the function only (it contains the buissness logic , All logical code will be here only )
+              ii)to understand the middlewares refer the userRedux.jsx component 
+      
+              
+      !How to dispatch the actions via middlewares : 
+                         i)// !here how to call the middlewares 
+                          dispatch(fetchUserMiddleware(param));
+
+      Diagram : 
+
+        +--------------------+         +--------------------+             +---------------------+
+        |   React Component   |         |   Middleware        |            |     Redux Slice      |
+        |     (UI Layer)      |  ==>    |     ( redux code )      |   ==>      |     (Reducer)        |
+        +--------------------+          +--------------------+            +---------------------+
+
+
+
+      !==============================Implementing the redux in IMDB Application ====================
+
+      1)we will create the slice in the imdb for below functionality 
+              i)pagination 
+              ii)movies 
+
+      2)and create the middlewares for below : 
+              i)movies
+
+      Task : implement the Slice and middlewares for the pagination        
  */
 

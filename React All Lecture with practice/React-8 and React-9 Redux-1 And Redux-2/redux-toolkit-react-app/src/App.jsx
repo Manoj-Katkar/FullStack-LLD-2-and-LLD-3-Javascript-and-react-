@@ -5,6 +5,7 @@ import './App.css'
 import Counter from './Components/Counter'
 import CounterRedux from './Components/CounterRedux'
 import ToDoRedux from './components/ToDoRedux'
+import UserRedux from './components/UserRedux'
 
 function App() {
 
@@ -14,7 +15,10 @@ function App() {
     <>
         {/* <Counter/> */}
         {/* <CounterRedux/> */}
-        <ToDoRedux/>
+        {/* <ToDoRedux/> */}
+
+        {/* to understand the middlewares in depth below component created */}
+        <UserRedux/>
     </>
 
 
