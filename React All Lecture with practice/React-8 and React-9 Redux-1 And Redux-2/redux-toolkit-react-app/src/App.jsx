@@ -15,10 +15,10 @@ function App() {
     <>
         {/* <Counter/> */}
         {/* <CounterRedux/> */}
-        {/* <ToDoRedux/> */}
+        <ToDoRedux/>
 
         {/* to understand the middlewares in depth below component created */}
-        <UserRedux/>
+        {/* <UserRedux/> */}
     </>
 
 
@@ -26,3 +26,5 @@ function App() {
 }
 
 export default App
+
+

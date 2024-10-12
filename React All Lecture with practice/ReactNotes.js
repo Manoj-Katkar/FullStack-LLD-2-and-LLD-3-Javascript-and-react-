@@ -968,8 +968,7 @@ const Child = ({ message }) => {
       3)installing redux and redux toolkit 
       4)actual integrating redux in react applications //^see in the counter application 
       5) also create the (to do list app) to see how the redux works 
-      6)
-      7)
+
     
       
 !What is redux : it is the javascript third party library which provides global state to your react application means we can                create the global state using the redux 
@@ -1412,7 +1411,7 @@ const Child = ({ message }) => {
 
 
 
-  ^================-========================== Redux-2 ========================================
+  ^================-========================== Redux-2 =======================================================
 
 
   !Agenda : 
@@ -1508,5 +1507,967 @@ const Child = ({ message }) => {
               i)movies
 
       Task : implement the Slice and middlewares for the pagination        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ^========================= React-11: React Performance and rendering =======================================
+
+
+  !Agenda : 
+      1)Code Splitting  (dividing the codebase)
+      2)Dynamic imports 
+      3)lazy loading 
+      4)memoizations 
+           i)useMemo() hook 
+           ii)useCallback() hook 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ^================-========================== React-12: React machine coding Problems ==========================
+
+
+
+  !Agenda : 
+      1)useRef() hook 
+      2)Machine Coding Questions In React  
+           i)stop watch component 
+           ii)automated image carousel (moving image in UI like government websites)
+           iii) Creating Custom Hooks
+
+
+
+
+  !1)useRef() hook : 
+                    i)using the useRef() hook we can store the data also in react which will not perform the re-rendering when its value will get changed
+                    ii)using useRef() hook we can target the any react element like how I was targetting using the document.querySelector() I have to store the referance using ref={}
+                    iii)everything we can able to access it using the .current property 
+                    iiii)we use the useRef() hook also we are having the un-controlled components because there data get stored in the actual dom so using the referance that useRef() hook will return using that only we can access that data 
+
+
+  
+
+
+
+
+  !========================================== How many ways we can store the data in react component and How it will work ========================================
+
+   
+              | Key Aspect             | React State (useState)                     | Normal Variable                          | useRef()                                        |
+              |------------------------|--------------------------------------------|------------------------------------------|-------------------------------------------------|
+              | Data Persistence        | Persists across renders                    | Does not persist across renders          | Persists across renders                         |
+              | Trigger Re-render       | Triggers re-render when updated            | Does not trigger re-render when changed  | Does not trigger re-render when changed         |
+              | Initial Value           | Set in useState initialization             | Can be set directly                      | Set via useRef() initialization                 |
+              | Value Updates           | Causes component to re-render when updated | Value is lost on re-render               | Can be updated without causing re-render        |
+              | Typical Use Case        | For dynamic values that affect UI          | For temporary, non-critical values       | For values that don't affect UI (e.g., DOM refs, timers) |
+              | Access to Current Value | Via state variable                         | Directly through variable                | Via ref's `.current` property                   |
+              | Syncing with UI         | UI updates when state changes              | No automatic UI update                   | UI does not automatically update                |
+              | Example                 | `const [count, setCount] = useState(0);`   | `let count = 0;`                         | `const countRef = useRef(0);`                   |
+              
+   
+
+
+    !return Statement in useEffect() hook :The return statement in the useEffect() hook is used for cleanup purposes, especially when dealing with side effects like timers, subscriptions, or event listeners.
+             
+              useEffect(() => {
+                1)The return statement in the useEffect() hook is used for cleanup purposes,
+                2)especially when dealing with side effects like timers, subscriptions, or event listeners.
+                3)In this case, the cleanup is necessary to clear the setInterval() timer when
+                4)the component unmounts or before the next effect is executed.
+                This avoids memory leaks or unexpected behavior.
+
+                !Effect Setup: 
+                          ^1)When useEffect() is called, it sets up a side effect (e.g., the image carousel logic using setInterval()).
+
+                const intervalId = setInterval(() => {
+                  if (currentProductIndex === products.length - 1) {
+                    setCurrentProductIndex(0);
+                  } else {
+                    setCurrentProductIndex((previousProductIndex) => previousProductIndex + 1);
+                  }
+                }, 4000);
+
+                !Effect Cleanup:
+                      ^The function returned from useEffect() runs in two cases:
+                        1)When the component is unmounted.
+                        2) When the effect is re-executed (e.g., when dependencies in the array change).
+                        3)This cleanup function stops any ongoing processes (like timers or subscriptions),
+                        4)ensuring that the setInterval() is cleared to prevent multiple intervals from running simultaneously.
+
+                return () => clearInterval(intervalId);
+
+              }, [currentProductIndex, products.length]);
+
+                
+
+  
+  Note : Machine Coding Questions In React  are their in one application with same name under same folder with className refer that for this concept 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ^=========================  React-13: React Interview Prep =======================================
+    
+
+  !Agenda : 
+      1)class based component 
+      2)Lifecycle of the component 
+      3)differance between class and function based component 
+      4)Higher order component 
+      5)Virtual DOM
+
+
+
+
+    !2)Lifecycle of the component : 
+
+
+                  | Lifecycle Phase  | Function-Based Component (using useEffect)           | Class-Based Component                          |
+                  |------------------|-------------------------------------------------------|------------------------------------------------|
+                  | **Mounting**     | useEffect(() => {                                     | componentDidMount() {                          |
+                  |                  |   // code to run on component mount                   |   // code to run on component mount            |
+                  |                  | }, []);                                               | }                                              |
+                  |------------------|-------------------------------------------------------|------------------------------------------------|
+                  | **Updating**     | useEffect(() => {                                     | componentDidUpdate(prevProps, prevState) {     |
+                  |                  |   // code to run on every render (no dependencies)    |   if (prevProps.value !== this.props.value) {  |
+                  |                  | });                                                   |     // code to run when specific props/state   |
+                  |                  |                                                       |   }                                            |
+                  |------------------|-------------------------------------------------------|------------------------------------------------|
+                  |                  | useEffect(() => {                                     |                                                |
+                  |                  |   // code to run on update with specific dependencies |                                                |
+                  |                  | }, [dependency]);                                     |                                                |
+                  |------------------|-------------------------------------------------------|------------------------------------------------|
+                  | **Unmounting**   | useEffect(() => {                                     | componentWillUnmount() {                       |
+                  |                  |   return () => {                                      |   // cleanup code on component unmount         |
+                  |                  |     // cleanup code on component unmount              | }                                              |
+                  |                  |   };                                                  |                                                |
+                  |                  | }, []);                                               |                                                |
+                  |------------------|-------------------------------------------------------|------------------------------------------------|
+
+
+    
+    !Note : do research about why in strict mode useEffect menas react componenet lifecycle methods get called two times 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    !========================================================= Final React Mock Notes ====================================
+
+    ^1)Explain the difference between State and Props. same give the ans in commented format only in digramatical way 
+
+
+                ----------------------------------------------
+                |          Difference between State and Props |
+                ----------------------------------------------
+                |  Feature              |     State                |     Props                 |
+                ----------------------------------------------
+                | Definition            | Internal data storage    | Data passed to a component |
+                |                       | that a component can     | from a parent component    |
+                |                       | manage and update        |                            |
+                ----------------------------------------------
+                | Mutability            | Mutable                  | Immutable                  |
+                |                       | (can be changed by the   | (cannot be modified by the |
+                |                       | component itself)        | receiving component)       |
+                ----------------------------------------------
+                | Who Manages It?       | Managed within the       | Managed by the parent      |
+                |                       | component (local)        | component                  |
+                ----------------------------------------------
+                | Update Mechanism      | Updated via `setState()` | Cannot be updated, only    |
+                |                       | or `useState()` hooks    | passed down as arguments   |
+                ----------------------------------------------
+                | Initial Value         | Can be initialized with  | Passed from parent as      |
+                |                       | a value and changed      | props; cannot be modified  |
+                |                       | over time                | internally                 |
+                ----------------------------------------------
+                | Scope                 | Local to the component   | Passed from parent to      |
+                |                       | where it’s defined       | child components           |
+                ----------------------------------------------
+                | Example Usage         | Handling form input,     | Passing data like titles,  |
+                |                       | toggling elements, etc.  | colors, functions, etc.,   |
+                |                       |                          | to child components        |
+                ----------------------------------------------
+                | Reusability           | Not reusable outside the | Reusable in different      |
+                |                       | component itself         | components                 |
+                ----------------------------------------------
+                | Example               |                          |                            |
+                |                       | function MyComponent() { | function ParentComponent() {|
+                |                       |   const [count, setCount]|   return <ChildComponent   |
+                |                       |     = useState(0);       |    title="Hello" />        |
+                |                       | }                        | }                          |
+                ----------------------------------------------
+
+      
+
+
+
+
+
+      ^==================================== 2)How does React effectively do DOM manipulation? ========================================
+
+
+
+                  -----------------------------------------------------------------------
+                  |       How React Effectively Handles DOM Manipulation (with Reconciliation) |
+                  -----------------------------------------------------------------------
+
+                  1. **Virtual DOM**:
+                      - React creates a Virtual DOM, which is a lightweight copy of the actual DOM.
+                      - Instead of directly interacting with the real DOM (which is slow), React makes updates to the Virtual DOM first.
+
+                      ┌─────────────┐
+                      │ User Action │ (e.g., button click, form input)
+                      └──────┬──────┘
+                            │
+                      ┌──────▼───────────────────┐
+                      │ React updates Virtual DOM │ (Efficient updates are done here)
+                      └───────────────────────────┘
+
+                  2. **Diffing Algorithm**:
+                      - React compares the new Virtual DOM with the previous Virtual DOM to identify differences.
+                      - This process is called **"diffing"**.
+                      - React calculates the minimum number of changes required to update the actual DOM.
+
+                      ┌────────────────────────────┐      ┌────────────────────────────┐
+                      │ Old Virtual DOM             │      │ New Virtual DOM             │
+                      └────────────────────────────┘      └────────────────────────────┘
+                                  │                                │
+                                  ▼                                ▼
+                        React compares (Diffing algorithm)   React finds differences
+
+                  3. **Reconciliation**:
+                      - **Reconciliation** is the process where React updates the actual DOM to match the new Virtual DOM.
+                      - React determines which parts of the real DOM need to be changed based on the differences found during the diffing process.
+                      - React then applies only the necessary changes to the real DOM, avoiding full re-renders of components and improving performance.
+
+                      ┌─────────────────────────────────────┐
+                      │ New Virtual DOM (changes calculated) │
+                      └─────────────────────────────────────┘
+                                      │
+                                      ▼
+                      ┌────────────────────────────────────────────┐
+                      │ Reconciliation: Minimal changes to the Real │
+                      │ DOM based on Virtual DOM differences        │
+                      └────────────────────────────────────────────┘
+
+                  4. **Batching Updates**:
+                      - React also batches multiple state updates together instead of updating the DOM for each state change.
+                      - This further optimizes performance and prevents unnecessary re-renders.
+
+                      ┌───────────────┐
+                      │ Multiple state│
+                      │ updates (batched) │
+                      └───────────────┘
+                            │
+                            ▼
+                      Single DOM update (only necessary parts)
+
+                  5. **Efficient DOM Manipulation**:
+                      - Finally, after reconciliation, React updates only the parts of the real DOM that have changed.
+                      - This minimizes costly direct DOM manipulation and ensures better performance.
+
+                      ┌──────────────┐
+                      │ Real DOM     │ (Only the changed parts are updated here)
+                      └──────────────┘
+
+                  -----------------------------------------------
+                  Summary:
+                  - React uses a Virtual DOM to handle updates efficiently.
+                  - **Diffing** compares the old Virtual DOM with the new one to find differences.
+                  - **Reconciliation** ensures that only the necessary parts of the actual DOM are updated.
+                  - Updates are batched together for better performance.
+                  - React optimizes the entire process, ensuring minimal re-renders.
+
+
+
+
+        ^============================================== 3)What is Diffing? ===========================================================
+
+
+            ------------------------------------------------
+            |                What is Diffing in React?      |
+            ------------------------------------------------
+
+            1. **Virtual DOM**:
+                - React uses a **Virtual DOM**, which is a lightweight copy of the real DOM.
+                - Whenever there’s a change in the state or props, React updates the Virtual DOM first.
+
+                ┌─────────────┐
+                │  State/Prop │ (User action or state/prop update)
+                │  Changes    │
+                └──────┬──────┘
+                      │
+                ┌──────▼───────────────────┐
+                │  Update Virtual DOM       │
+                └───────────────────────────┘
+
+            2. **Previous vs. New Virtual DOM**:
+                - React keeps track of the **previous Virtual DOM** and **new Virtual DOM** after any update.
+                - To determine which parts of the UI need to change, React **compares** the old and new Virtual DOM trees.
+
+                ┌────────────────────────────┐      ┌────────────────────────────┐
+                │ Previous Virtual DOM        │      │ New Virtual DOM             │
+                └────────────────────────────┘      └────────────────────────────┘
+                            │                                │
+                            ▼                                ▼
+                  React compares (Diffing algorithm)   React finds the differences
+
+            3. **Diffing Algorithm**:
+                - **Diffing** is the process where React compares the old Virtual DOM with the new Virtual DOM.
+                - React uses an efficient algorithm to calculate the **minimum number of changes** needed to update the actual DOM.
+                - It identifies nodes that have been added, removed, or changed, and prepares to update only those parts.
+
+                ┌───────────────────────────────────────────────────┐
+                │ Diffing Algorithm: Find changes in DOM structure   │
+                └───────────────────────────────────────────────────┘
+                                │
+                                ▼
+                ┌────────────────────────────────────────────┐
+                │ Changes Identified (e.g., new nodes, text)  │
+                └────────────────────────────────────────────┘
+
+            4. **Efficient DOM Updates**:
+                - After identifying the differences through the diffing process, React updates only the changed parts in the **real DOM**.
+                - This **minimizes direct DOM manipulation** and improves the performance of the app, avoiding costly re-renders of the entire DOM.
+
+                ┌────────────────────────────────────┐
+                │ Real DOM: Only update the changes  │ (Efficient and minimal updates)
+                └────────────────────────────────────┘
+
+            ------------------------------------------------------
+            Summary:
+            - **Diffing** is the process of comparing the previous Virtual DOM with the new Virtual DOM to find out what has changed.
+            - React identifies the smallest possible set of changes to apply to the real DOM.
+            - This process makes React highly efficient by minimizing direct interaction with the real DOM.
+
+
+
+
+        
+        ^============================================ 4)What is Batching? =============================================================
+
+                  
+            --------------------------------------------
+            |                What is Batching in React? |
+            --------------------------------------------
+
+            1. **Batching Overview**:
+                - Batching in React refers to the process where multiple state updates are grouped together into a single re-render.
+                - Instead of updating the DOM for each state change, React batches multiple updates to optimize performance.
+
+                ┌───────────────┐
+                │ Multiple State│
+                │ Updates       │  (Multiple state/prop changes happen)
+                └──────┬────────┘
+                      │
+                ┌──────▼───────────────────┐
+                │ Batch Updates in React    │ (React collects all updates in one batch)
+                └───────────────────────────┘
+
+            2. **React’s Batching Mechanism**:
+                - React does not immediately apply each state update when it's triggered.
+                - Instead, React waits until the event handler or lifecycle method finishes and then applies the updates in one go.
+
+                ┌─────────────────────────────┐
+                │ State update 1 (e.g., setState) │
+                └──────────────┬──────────────┘
+                              │
+                ┌──────────────▼───────────────┐
+                │ State update 2 (e.g., setState) │
+                └──────────────┬──────────────┘
+                              │
+                ┌──────────────▼───────────────┐
+                │ State update 3 (e.g., setState) │
+                └──────────────┬──────────────┘
+                              │
+                              ▼
+                ┌─────────────────────────────┐
+                │ React batches updates together │ (No re-render yet)
+                └─────────────────────────────┘
+
+            3. **Re-render After Batching**:
+                - After React batches multiple updates, it performs a single re-render.
+                - This approach reduces unnecessary re-renders and improves performance, especially when there are multiple state changes in a short period.
+
+                ┌─────────────────────────────┐
+                │ Single Re-render of Component│ (After all updates are batched)
+                └─────────────────────────────┘
+
+            4. **Example of Batching**:
+                - Suppose you have three `setState` calls within the same function. React will batch them and trigger only one re-render:
+
+                ┌─────────────┐
+                │ setState 1  │
+                └────┬────────┘
+                    │
+                ┌────▼────────┐
+                │ setState 2  │  (These updates are batched together)
+                └────┬────────┘
+                    │
+                ┌────▼────────┐
+                │ setState 3  │
+                └─────────────┘
+                    │
+                    ▼
+                ┌─────────────────────────────┐
+                │ One single re-render happens │ (after all updates)
+                └─────────────────────────────┘
+
+            -----------------------------------------------
+            Summary:
+            - **Batching** is React's optimization technique where multiple state updates are grouped and applied together in one go, instead of rendering the UI after every state change.
+            - This results in fewer re-renders and improves the performance of your application.
+            - React waits until all state changes are done before performing a single re-render.
+
+
+
+
+
+
+
+
+        ^ =========================================== 4)What is Batching? ===========================================================
+
+
+
+            --------------------------------------------
+            |                What is Batching in React? |
+            --------------------------------------------
+
+            1. **Batching Overview**:
+                - Batching in React refers to the process where multiple state updates are grouped together into a single re-render.
+                - Instead of updating the DOM for each state change, React batches multiple updates to optimize performance.
+
+                ┌───────────────┐
+                │ Multiple State│
+                │ Updates       │  (Multiple state/prop changes happen)
+                └──────┬────────┘
+                      │
+                ┌──────▼───────────────────┐
+                │ Batch Updates in React    │ (React collects all updates in one batch)
+                └───────────────────────────┘
+
+            2. **React’s Batching Mechanism**:
+                - React does not immediately apply each state update when it's triggered.
+                - Instead, React waits until the event handler or lifecycle method finishes and then applies the updates in one go.
+
+                ┌─────────────────────────────┐
+                │ State update 1 (e.g., setState) │
+                └──────────────┬──────────────┘
+                              │
+                ┌──────────────▼───────────────┐
+                │ State update 2 (e.g., setState) │
+                └──────────────┬──────────────┘
+                              │
+                ┌──────────────▼───────────────┐
+                │ State update 3 (e.g., setState) │
+                └──────────────┬──────────────┘
+                              │
+                              ▼
+                ┌─────────────────────────────┐
+                │ React batches updates together │ (No re-render yet)
+                └─────────────────────────────┘
+
+            3. **Re-render After Batching**:
+                - After React batches multiple updates, it performs a single re-render.
+                - This approach reduces unnecessary re-renders and improves performance, especially when there are multiple state changes in a short period.
+
+                ┌─────────────────────────────┐
+                │ Single Re-render of Component│ (After all updates are batched)
+                └─────────────────────────────┘
+
+            4. **Example of Batching**:
+                - Suppose you have three `setState` calls within the same function. React will batch them and trigger only one re-render:
+
+                ┌─────────────┐
+                │ setState 1  │
+                └────┬────────┘
+                    │
+                ┌────▼────────┐
+                │ setState 2  │  (These updates are batched together)
+                └────┬────────┘
+                    │
+                ┌────▼────────┐
+                │ setState 3  │
+                └─────────────┘
+                    │
+                    ▼
+                ┌─────────────────────────────┐
+                │ One single re-render happens │ (after all updates)
+                └─────────────────────────────┘
+
+            -----------------------------------------------
+            Summary:
+            - **Batching** is React's optimization technique where multiple state updates are grouped and applied together in one go, instead of rendering the UI after every state change.
+            - This results in fewer re-renders and improves the performance of your application.
+            - React waits until all state changes are done before performing a single re-render.
+
+
+
+
+
+        
+        
+        ^ =========================================== 5)What is Reconciliation? ===========================================================
+
+
+            ------------------------------------------------
+            |               What is Reconciliation in React?|
+            ------------------------------------------------
+
+            1. **Reconciliation Overview**:
+                - Reconciliation is the process where React updates the **actual DOM** to match the **Virtual DOM**.
+                - When the state or props change, React re-renders the Virtual DOM and then calculates the **minimal changes** required to update the real DOM.
+                - This helps improve performance by avoiding full DOM re-renders.
+
+                ┌───────────────┐
+                │  State/Prop   │ (Changes trigger Virtual DOM update)
+                └──────┬────────┘
+                      │
+                ┌──────▼───────────────────┐
+                │ Update Virtual DOM        │ (React creates a new Virtual DOM)
+                └───────────────────────────┘
+
+            2. **Diffing**:
+                - React compares the previous Virtual DOM with the new Virtual DOM to find the differences.
+                - This comparison process is called **diffing**.
+                - The differences between the two DOM trees are identified, and React determines which parts of the real DOM need to be updated.
+
+                ┌────────────────────────────┐      ┌────────────────────────────┐
+                │ Previous Virtual DOM        │      │ New Virtual DOM             │
+                └────────────────────────────┘      └────────────────────────────┘
+                            │                                │
+                            ▼                                ▼
+                  React compares (Diffing)         Differences are identified
+
+            3. **Reconciliation Process**:
+                - After diffing, React performs **reconciliation** by applying only the necessary changes to the real DOM, based on the differences found.
+                - It ensures that only the minimal number of updates are made, improving performance.
+
+                ┌────────────────────────────────────────────┐
+                │ Reconciliation: Update only the necessary  │
+                │ parts of the real DOM based on the changes │
+                └────────────────────────────────────────────┘
+
+            4. **Real DOM Updates**:
+                - React updates only the parts of the real DOM that have changed.
+                - This avoids a complete re-render of the entire DOM, making the app more efficient.
+
+                ┌───────────────┐
+                │ Real DOM      │ (Only updated where necessary)
+                └───────────────┘
+
+            ---------------------------------------------------------
+            Summary:
+            - **Reconciliation** is the process in React that updates the actual DOM based on changes in the Virtual DOM.
+            - The **diffing algorithm** helps identify differences between the old and new Virtual DOM.
+            - React then applies only the required changes to the real DOM, improving the app’s performance by avoiding full re-renders.
+
+
+
+
+
+
+
+
+
+
+        ^ ============================= 6)Why do we need Custom Hooks? ===========================================================
+
+
+
+            ------------------------------------------------
+            |              Why Do We Need Custom Hooks?     |
+            ------------------------------------------------
+
+            1. **Overview of Custom Hooks**:
+                - Custom Hooks are functions that allow you to **extract component logic** into reusable functions.
+                - They enable sharing stateful logic across multiple components without changing the component hierarchy.
+
+                ┌──────────────────────────┐
+                │  Component Logic         │
+                └──────────────┬───────────┘
+                              │
+                              ▼
+                ┌──────────────────────────┐
+                │ Custom Hook (e.g., useFetch)│ (Reusable function)
+                └──────────────────────────┘
+
+            2. **Reusability**:
+                - With Custom Hooks, you can reuse stateful logic across different components, avoiding code duplication.
+                - This promotes cleaner and more maintainable code.
+
+                ┌────────────────────────────┐
+                │  Component 1 (e.g., User)  │
+                └──────────────┬─────────────┘
+                              │
+                              ┌────────────────────────┐
+                              │  Custom Hook (useFetch)│
+                              └────────────────────────┘
+                              │
+                ┌──────────────▼─────────────┐
+                │  Component 2 (e.g., Posts)  │
+                └──────────────────────────────┘
+
+            3. **Separation of Concerns**:
+                - Custom Hooks help separate **business logic** from UI logic.
+                - This separation improves the readability of components by keeping them focused on rendering UI.
+
+                ┌──────────────────────────┐
+                │  Component UI Logic      │
+                └──────────────┬───────────┘
+                              │
+                              ▼
+                ┌──────────────────────────┐
+                │ Custom Hook Logic        │ (Business logic encapsulated)
+                └──────────────────────────┘
+
+            4. **Abstraction and Encapsulation**:
+                - Custom Hooks allow you to encapsulate complex logic and state management, making it easier to understand and manage.
+
+                ┌────────────────────────────┐
+                │ Complex Logic Encapsulated │
+                │ within Custom Hook        │
+                └────────────────────────────┘
+
+            ---------------------------------------------------------
+            Summary:
+            - **Custom Hooks** provide a way to extract and reuse stateful logic across components in React.
+            - They promote **reusability**, **separation of concerns**, and **abstraction**, making the code cleaner and more maintainable.
+            - Using Custom Hooks simplifies component structure by allowing you to focus on UI rendering while encapsulating business logic.
+
+
+        !Note :
+        
+            !Custom hooks in React 
+
+            * * i)we have to create the custom hook in react should have the prefix as = useBoolean , useChangeTitle
+            * * ii) we use the custom hooks in react for the function based component to re-use the function based component logic
+            * * iii) and for the class based we use the higher order component to reuse the component logic 
+            * * iv)NOte : if needed you can call another hook inside the custom hook that you are creating if needed  
+
+
+
+
+
+
+
+
+
+
+
+        ^ ============================= 6)Write a custom hook to fetch data. ===========================================================
+              
+
+          ----------------------------------------------------------
+          |                  Custom Hook for Fetching Data         |
+          ----------------------------------------------------------
+
+          1. **Overview**:
+              - This Custom Hook, `useFetch`, allows you to fetch data from an API.
+              - It handles loading state, error handling, and returns the fetched data.
+
+              ┌─────────────────────────────────┐
+              │  Custom Hook: useFetch(url)     │
+              └─────────────────────────────────┘
+                            │
+                            ▼
+              ┌─────────────────────────────────┐
+              │  Returns:                       │
+              │  - data                         │
+              │  - loading                      │
+              │  - error                        │
+              └─────────────────────────────────┘
+
+          2. **Implementation**:
+              - The hook uses `useState` to manage `data`, `loading`, and `error` states.
+              - It uses `useEffect` to trigger data fetching when the URL changes.
+
+              ┌─────────────────────────────────┐
+              │  useFetch.js                    │
+              └─────────────────────────────────┘
+              ┌──────────────────────────────┐
+              │ import { useState, useEffect }│
+              │ from 'react';                 │
+              └──────────────┬───────────────┘
+                            │
+                            ▼
+              ┌─────────────────────────────────┐
+              │  const useFetch = (url) => {    │
+              │     const [data, setData] =     │
+              │     useState(null);              │
+              │     const [loading, setLoading] =│
+              │     useState(true);              │
+              │     const [error, setError] =    │
+              │     useState(null);              │
+              └─────────────────────────────────┘
+                            │
+                            ▼
+              ┌─────────────────────────────────┐
+              │     useEffect(() => {           │
+              │       fetch(url)                │
+              │         .then(response => {     │
+              │           if (!response.ok) {   │
+              │             throw new Error('Network response was not ok'); │
+              │           }                      │
+              │           return response.json();│
+              │         })                       │
+              │         .then(data => {         │
+              │           setData(data);        │
+              │           setLoading(false);    │
+              │         })                       │
+              │         .catch(error => {       │
+              │           setError(error);      │
+              │           setLoading(false);    │
+              │         });                      │
+              │     }, [url]);                  │
+              └─────────────────────────────────┘
+
+          3. **Return Values**:
+              - The hook returns the `data`, `loading`, and `error` states to the component using the hook.
+
+              ┌─────────────────────────────────┐
+              │     return { data, loading,     │
+              │     error };                    │
+              └─────────────────────────────────┘
+
+          4. **Usage**:
+              - You can use this hook in a functional component to fetch data easily.
+
+              ┌─────────────────────────────────┐
+              │  Example Component              │
+              └─────────────────────────────────┘
+              ┌──────────────────────────────┐
+              │ import useFetch from './useFetch'; │
+              └──────────────────────────────┘
+              ┌─────────────────────────────────┐
+              │ const MyComponent = () => {     │
+              │   const { data, loading, error } = useFetch('https://api.example.com/data'); │
+              │   if (loading) return <div>Loading...</div>; │
+              │   if (error) return <div>Error: {error.message}</div>; │
+              │   return <div>{JSON.stringify(data)}</div>; │
+              │ };                              │
+              └─────────────────────────────────┘
+
+          ----------------------------------------------------------
+          Summary:
+          - The `useFetch` Custom Hook abstracts the data-fetching logic, making it reusable across components.
+          - It manages loading states and errors efficiently, providing a clean interface for fetching data.
+
+
+
+
+
+    
+    
+        ^ ============================= 7)What is memoization?. ===========================================================
+
+
+
+          ----------------------------------------------------------
+          |                       What is Memoization?               |
+          ----------------------------------------------------------
+
+          1. **Overview**:
+              - Memoization is an optimization technique used to improve performance by caching the results of expensive function calls.
+              - When a function is called with the same arguments, memoization allows you to return the cached result instead of recalculating it.
+
+              ┌────────────────────────────────┐
+              │  Function Call                │
+              └──────────────┬─────────────────┘
+                            │
+                            ▼
+              ┌────────────────────────────────┐
+              │  Calculate Result              │
+              └──────────────┬─────────────────┘
+                            │
+                            ▼
+              ┌────────────────────────────────┐
+              │  Store Result in Cache         │
+              └────────────────────────────────┘
+
+          2. **How It Works**:
+              - Memoization stores results of function calls in a cache (an object or map).
+              - When the function is called, it checks if the result for the given arguments is already cached.
+
+              ┌─────────────────────────────┐
+              │  Cache (Object/Map)         │
+              └──────────────┬──────────────┘
+                            │
+                            ▼
+              ┌────────────────────────────────┐
+              │  Check Cache for Result        │
+              └──────────────┬─────────────────┘
+                            │
+                            ├─────── No ────────┐
+                            │                    ▼
+                            │          ┌─────────────────────────────┐
+                            │          │  Call Function              │
+                            │          └──────────────┬──────────────┘
+                            │                         │
+                            │                         ▼
+                            │          ┌────────────────────────────────┐
+                            │          │  Store Result in Cache         │
+                            │          └────────────────────────────────┘
+                            │
+                            └─────── Yes ────────┐
+                                                  ▼
+                            ┌────────────────────────────────┐
+                            │  Return Cached Result           │
+                            └────────────────────────────────┘
+
+          3. **Benefits**:
+              - Reduces the time complexity of functions by avoiding repeated calculations for the same inputs.
+              - Improves performance in scenarios where the same function is called frequently with the same arguments.
+
+              ┌────────────────────────────────┐
+              │  Benefits of Memoization       │
+              └────────────────────────────────┘
+              ┌─────────────────────┐
+              │  - Faster execution │
+              ├─────────────────────┤
+              │  - Efficient memory usage │
+              └─────────────────────┘
+
+          4. **Ways to Achieve Memoization in React**:
+              - Memoization can be achieved in React using various methods, including:
+              
+              ┌────────────────────────────────┐
+              │  Memoization in React          │
+              └────────────────────────────────┘
+              ┌─────────────────────────────┐
+              │  1. React.memo              │
+              │  - Higher Order Component    │
+              │  - Caches the component's    │
+              │    rendered output based on  │
+              │    props.                   │
+              ├─────────────────────────────┤
+              │  2. useMemo Hook            │
+              │  - Memoizes the result of    │
+              │    a computation based on     │
+              │    dependencies.             │
+              ├─────────────────────────────┤
+              │  3. useCallback Hook         │
+              │  - Returns a memoized        │
+              │    version of a callback     │
+              │    function that only        │
+              │    changes if dependencies    │
+              │    change.                   │
+              └─────────────────────────────┘
+
+          5. **Use Cases**:
+              - Memoization is particularly useful in:
+                  - Recursive functions (e.g., calculating Fibonacci numbers)
+                  - Expensive calculations (e.g., data fetching, computations)
+
+              ┌────────────────────────────────┐
+              │  Use Cases                    │
+              └────────────────────────────────┘
+              ┌─────────────────────────────┐
+              │  - Fibonacci Sequence        │
+              ├─────────────────────────────┤
+              │  - Heavy Data Computation    │
+              └─────────────────────────────┘
+
+          ----------------------------------------------------------
+          Summary:
+          - **Memoization** is an optimization technique that caches the results of expensive function calls to improve performance.
+          - It checks if a cached result exists before executing the function, reducing unnecessary calculations.
+          - In React, memoization can be achieved using `React.memo`, `useMemo`, and `useCallback` hooks.
+          - This technique is beneficial in scenarios with frequent repetitive calculations, enhancing efficiency and speed.
+
+
+
+          !Why we should use const [count, setCount] = useState(0); // Using const to store current state and updater function
+                          i)because const keyword maintains a consistent reference to the state and its updater function
+
+
+
  */
 

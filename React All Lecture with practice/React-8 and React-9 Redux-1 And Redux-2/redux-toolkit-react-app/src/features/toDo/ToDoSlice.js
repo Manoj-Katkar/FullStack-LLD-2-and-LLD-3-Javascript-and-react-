@@ -23,8 +23,8 @@ const ToDoSlice = createSlice({
         }),
         remove:((state , action) => {
             // console.log("romove it");
-            // console.log(action.payload);
-            // console.log(action);
+            console.log("action.payload" , action.payload);
+            console.log("action" , action);
             
             
             
