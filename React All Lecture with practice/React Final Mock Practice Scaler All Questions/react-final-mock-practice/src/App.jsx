@@ -8,6 +8,7 @@ import TimerPlayPauseReset from './components/TimerPlayPauseReset'
 import ProductsContextProvider from './ContextApi/ProductsContextProvider'
 import ConsumeContext from './components/ConsumeContext'
 import CartRedux from './components/CartRedux'
+import SettingsForm from './components/SettingsForm'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -34,7 +35,8 @@ function App() {
 
       <span>React Final Mock Practice</span>
 
-      <CartRedux/>
+      {/* <CartRedux/> */}
+      <SettingsForm/>
 
     </div>
   )
