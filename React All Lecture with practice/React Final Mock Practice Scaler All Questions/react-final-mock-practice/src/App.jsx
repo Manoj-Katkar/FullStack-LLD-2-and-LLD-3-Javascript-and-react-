@@ -9,6 +9,7 @@ import ProductsContextProvider from './ContextApi/ProductsContextProvider'
 import ConsumeContext from './components/ConsumeContext'
 import CartRedux from './components/CartRedux'
 import SettingsForm from './components/SettingsForm'
+import TrendingMovies from './components/TrendingMovies'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -36,7 +37,8 @@ function App() {
       <span>React Final Mock Practice</span>
 
       {/* <CartRedux/> */}
-      <SettingsForm/>
+
+      <TrendingMovies/>
 
     </div>
   )
